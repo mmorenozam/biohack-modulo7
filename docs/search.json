@@ -1,0 +1,394 @@
+[
+  {
+    "objectID": "biohack-modulo7.html#section",
+    "href": "biohack-modulo7.html#section",
+    "title": "biohack-modulo7",
+    "section": "",
+    "text": "Módulo 7: Otros métodos estadísticos\n\nMauricio Moreno, PhD"
+  },
+  {
+    "objectID": "biohack-modulo7.html#mapas-de-calor-con-ggplot2",
+    "href": "biohack-modulo7.html#mapas-de-calor-con-ggplot2",
+    "title": "biohack-modulo7",
+    "section": "Mapas de calor con {ggplot2}!",
+    "text": "Mapas de calor con {ggplot2}!\n\n\nHace poco descubrí un nuevo paquete que nos ayuda a realizar mapas de calor con {ggplot2}\nSu nombre es {tidyheatmaps} y puedes ver acerca del mismo aquí\n\n\n\n\n\n\nlibrary(tidyheatmaps)\ntidyheatmap(data_exprs,\n            rows = external_gene_name,\n            columns = sample,\n            values = expression,\n            scale = \"row\",\n            cluster_rows = TRUE,\n            cluster_cols = TRUE,\n            display_numbers = TRUE\n)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#heterocedasticidad-en-el-anova",
+    "href": "biohack-modulo7.html#heterocedasticidad-en-el-anova",
+    "title": "biohack-modulo7",
+    "section": "Heterocedasticidad en el ANOVA",
+    "text": "Heterocedasticidad en el ANOVA\n\n\nUsaremos los datos de las ranas arbóreas de ojos rojos de Touchon (disponibles en formato csv en la pestaña de recursos del sition web del curso).\nEstos corresponden a una investigación que llevo por objetivo el estudiar las interacciones entre predadores y recursos en el desarrollo de estas ranas desde su eclosión hasta el término de la metamorfosis.\nNos enfocaremos en las variables:\n\nRespuesta: Edad de metamorfosis (Age.DPO)\nIndependientes:\n\nPredadores (Pred), 3 niveles: L = letales, NL = no letales y C = control\nRecursos (Res), 2 niveles: Lo = bajos y Hi = altos\n\n\nEl diseño experimental cae en la categoría de un DFC en bloques.\nLa pregunta de investigación en esta caso particular, es el determinar si la edad del término de la metaformosis se ve afectada por la presencia/ausencia de depredadores y abundancia/carencia de recursos."
+  },
+  {
+    "objectID": "biohack-modulo7.html#heterocedasticidad-en-el-anova-1",
+    "href": "biohack-modulo7.html#heterocedasticidad-en-el-anova-1",
+    "title": "biohack-modulo7",
+    "section": "Heterocedasticidad en el ANOVA",
+    "text": "Heterocedasticidad en el ANOVA\n\nPara ahorrarnos tiempo, supongamos que ya corrimos un primer ANOVA no aditivo de dos vías, y encontramos desviaciones de la normalidad que corregimos con la transformación del logaritmo de Age.DPO.\n\n\nlibrary(car)\nranas &lt;- read.csv(\"datos/touchon.csv\")\nlm &lt;- lm(log(Age.DPO) ~ Pred * Res, data = ranas)\nresiduos &lt;- lm$residuals\nshapiro.test(residuos)\n\n\n    Shapiro-Wilk normality test\n\ndata:  residuos\nW = 0.98939, p-value = 0.7702\n\nleveneTest(lm)\n\nLevene's Test for Homogeneity of Variance (center = median)\n      Df F value    Pr(&gt;F)    \ngroup  5  4.6455 0.0009903 ***\n      72                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\nComo podemos ver, la normalidad de los residuos ya no es un problema, pero la homogeinidad de varianzas si lo es."
+  },
+  {
+    "objectID": "biohack-modulo7.html#corrección-de-welch-en-anova",
+    "href": "biohack-modulo7.html#corrección-de-welch-en-anova",
+    "title": "biohack-modulo7",
+    "section": "Corrección de Welch en ANOVA",
+    "text": "Corrección de Welch en ANOVA\n\n\nEn ANOVA, de manera similar a las pruebas t, es posible usar la corrección de Welch para cuando el supuesto de la heterodasticidad no se cumple.\nLa desventaja radica en que este test solo es aplicable en la estructura del ANOVA de una vía\nEsto no es un problema si sabemos re-parametrizar el ANOVA de dos vías original.\n\n\n\n\n\n\nColapsamos los factores un único factor\n\n\nranas$log.Age.DPO &lt;- log(ranas$Age.DPO)\nranas$tratamiento &lt;- paste(ranas$Pred, ranas$Res, sep = \"-\")\n\n\n\nLa corrección de Welch para ANOVA está disponible en el paquete {rstatix}\n\n\nlibrary(rstatix)\nanova_welch &lt;- ranas |&gt;\n  welch_anova_test(log.Age.DPO ~ tratamiento)\nanova_welch\n\n# A tibble: 1 × 7\n  .y.             n statistic   DFn   DFd           p method     \n* &lt;chr&gt;       &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;      \n1 log.Age.DPO    78      17.2     5  24.0 0.000000305 Welch ANOVA"
+  },
+  {
+    "objectID": "biohack-modulo7.html#corrección-de-welch-en-anova-1",
+    "href": "biohack-modulo7.html#corrección-de-welch-en-anova-1",
+    "title": "biohack-modulo7",
+    "section": "Corrección de Welch en ANOVA",
+    "text": "Corrección de Welch en ANOVA\n\nOtra desventaja es el no contar más con las agrupaciones por letras de las comparaciones múltiples\n\n\n\n\ncomparaciones &lt;- ranas |&gt;\n  games_howell_test(log.Age.DPO ~ tratamiento)\ncomparaciones\n\n\n\n\n# A tibble: 15 × 8\n   .y.         group1 group2 estimate conf.low conf.high      p.adj p.adj.signif\n * &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;       \n 1 log.Age.DPO C-Hi   C-Lo    0.440     0.180     0.700  0.000261   ***         \n 2 log.Age.DPO C-Hi   L-Hi   -0.202    -0.362    -0.0425 0.008      **          \n 3 log.Age.DPO C-Hi   L-Lo   -0.0452   -0.258     0.168  0.986      ns          \n 4 log.Age.DPO C-Hi   NL-Hi  -0.0531   -0.351     0.244  0.988      ns          \n 5 log.Age.DPO C-Hi   NL-Lo   0.285    -0.331     0.902  0.545      ns          \n 6 log.Age.DPO C-Lo   L-Hi   -0.643    -0.877    -0.408  0.00000114 ****        \n 7 log.Age.DPO C-Lo   L-Lo   -0.485    -0.754    -0.217  0.0000932  ****        \n 8 log.Age.DPO C-Lo   NL-Hi  -0.493    -0.821    -0.166  0.002      **          \n 9 log.Age.DPO C-Lo   NL-Lo  -0.155    -0.772     0.462  0.936      ns          \n10 log.Age.DPO L-Hi   L-Lo    0.157    -0.0196    0.334  0.099      ns          \n11 log.Age.DPO L-Hi   NL-Hi   0.149    -0.142     0.440  0.448      ns          \n12 log.Age.DPO L-Hi   NL-Lo   0.488    -0.133     1.11   0.129      ns          \n13 log.Age.DPO L-Lo   NL-Hi  -0.00797  -0.310     0.294  1          ns          \n14 log.Age.DPO L-Lo   NL-Lo   0.331    -0.286     0.947  0.419      ns          \n15 log.Age.DPO NL-Hi  NL-Lo   0.339    -0.284     0.961  0.433      ns"
+  },
+  {
+    "objectID": "biohack-modulo7.html#corrección-de-welch-en-anova-2",
+    "href": "biohack-modulo7.html#corrección-de-welch-en-anova-2",
+    "title": "biohack-modulo7",
+    "section": "Corrección de Welch en ANOVA",
+    "text": "Corrección de Welch en ANOVA\n\nPero podemos llevar a cabo gráficos de comparaciones por pares con la ayuda de {ggpubr}\n\n\n\n\nlibrary(ggpubr)\nlibrary(ggplot2)\nggboxplot(ranas, \n          x = \"tratamiento\", \n          y = \"log.Age.DPO\") +\n  stat_pvalue_manual(comparaciones, \n                     label = \"p.adj\", \n                     y.position = seq(5.1, 6, \n                                      length.out = 5), \n                     hide.ns = T)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#generalidades",
+    "href": "biohack-modulo7.html#generalidades",
+    "title": "biohack-modulo7",
+    "section": "Generalidades",
+    "text": "Generalidades\n\n\nSe diferencia del ANOVA al considerar uno o más predictores continuos (no factores categóricos).\nLos supuestos de la regresión lineal son:\n\nExistencia de una relación lineal entre las variables continuas objeto de la regresión\nNormalidad de los residuos\nQue no exista multicolinearidad (en el caso de regresión múltiple)\nQue no exista auto correlación (que las observaciones no dependan una de otra dentro de una misma variable)\nHomogeneidad de la varianza de los residuos\n\nContrario al ANOVA, no existen correcciones o métodos alternativos cuando las transformaciones fallan.\nPor esto, lo que se recomienda hacer es mencionar todos los detalles de la conducción del modelo.\nEn regresión lineal es quizá en el método que más se abusa del remover outliers."
+  },
+  {
+    "objectID": "biohack-modulo7.html#regresión-lineal-simple-en-r",
+    "href": "biohack-modulo7.html#regresión-lineal-simple-en-r",
+    "title": "biohack-modulo7",
+    "section": "Regresión lineal simple en R",
+    "text": "Regresión lineal simple en R\n\n\nUsando los datos de Touchon, podríamos preguntarnos si el tamaño de las ranas al final de la metamorfosis SVL.final está influenciado por la edad en finalizar la metamorfosis Age.DPO.\nEsta regresión lineal sería de la siguiente forma:\n\n\n\n\nreg1 &lt;- lm(SVL.final ~ Age.DPO, data = ranas)\nsummary(reg1)\n\n\nCall:\nlm(formula = SVL.final ~ Age.DPO, data = ranas)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.1414 -0.9521 -0.1297  0.6842  3.4349 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 21.285436   0.416763  51.073  &lt; 2e-16 ***\nAge.DPO     -0.029437   0.006052  -4.864 6.08e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.262 on 76 degrees of freedom\nMultiple R-squared:  0.2374,    Adjusted R-squared:  0.2273 \nF-statistic: 23.65 on 1 and 76 DF,  p-value: 6.081e-06\n\n\n\n\n\nPero antes de cualquier inferencia, vamos a darle un vistazo a los diagnósticos de la regresión lineal"
+  },
+  {
+    "objectID": "biohack-modulo7.html#diagnósticos-de-la-regresión-lineal",
+    "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-lineal",
+    "title": "biohack-modulo7",
+    "section": "Diagnósticos de la regresión lineal",
+    "text": "Diagnósticos de la regresión lineal\n\npar(mfrow = c(2, 2))\nplot(reg1)\npar(mfrow = c(1, 1))"
+  },
+  {
+    "objectID": "biohack-modulo7.html#diagnósticos-de-la-regresión-lineal-1",
+    "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-lineal-1",
+    "title": "biohack-modulo7",
+    "section": "Diagnósticos de la regresión lineal",
+    "text": "Diagnósticos de la regresión lineal"
+  },
+  {
+    "objectID": "biohack-modulo7.html#diagnósticos-de-la-regresión-lineal-2",
+    "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-lineal-2",
+    "title": "biohack-modulo7",
+    "section": "Diagnósticos de la regresión lineal",
+    "text": "Diagnósticos de la regresión lineal\n\n\n\n\n\n\n\n\n\n\n\n\nResiduos vs. Valores ajustados\nEn el ANOVA vimos como este plot sugería departuras de la homocedasticidad. En el caso de la regresión lineal, los residuos al no estar agrupados en categorías presentan mayor información sobre este supuesto. Adicionalmente, curvaturas en la línea roja evidencian también departuras de la linearidad. Esto quiere decir que la relación entre las variables no es completamente lineal. A veces esto puede corregirse con transformaciones."
+  },
+  {
+    "objectID": "biohack-modulo7.html#diagnósticos-de-la-regresión-lineal-3",
+    "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-lineal-3",
+    "title": "biohack-modulo7",
+    "section": "Diagnósticos de la regresión lineal",
+    "text": "Diagnósticos de la regresión lineal\n\n\nEs ideal. (b) Es indicativo de no linearidad. (c) Evidencia de heterocedasticidad. (d) Evidencia de una tendencia temporal"
+  },
+  {
+    "objectID": "biohack-modulo7.html#diagnósticos-de-la-regresión-lineal-4",
+    "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-lineal-4",
+    "title": "biohack-modulo7",
+    "section": "Diagnósticos de la regresión lineal",
+    "text": "Diagnósticos de la regresión lineal\n\n\n\n\n\n\n\n\n\n\n\n\nResiduos vs. Apalancamiento\nAquellos puntos que estén etiquetados con números son mostrados como posibles outliers bajo dos criterios:\n\nEstán por fuera de los límites de la regla del rango intercuartílico (IQR), y\nMarcados como outliers con influencia de apalancamiento mediante la prueba de Cook (distancia de Cook).\n\nEl segundo criterio es un argumento sólido para remover outliers."
+  },
+  {
+    "objectID": "biohack-modulo7.html#pruebas-formales-de-los-supuestos",
+    "href": "biohack-modulo7.html#pruebas-formales-de-los-supuestos",
+    "title": "biohack-modulo7",
+    "section": "Pruebas formales de los supuestos",
+    "text": "Pruebas formales de los supuestos\n\n\nComo vimos, los supuestos de la regresión lineal son más que para el ANOVA.\nExisten varias pruebas formales para chequear cada uno de sus supuestos, sin embargo rara vez son empleadas.\nLa razón yace en que si los aplicáramos todo el tiempo, no haríamos regresiones lineales ni el 10% de las veces.\nSi tienes curiosidad en estas pruebas puedes visitar este enlace.\nDe alguna manera podemos decir que de hecho, los estadísticos somos más laxos con la regresión lineal siempre y cuando estas departuras de los supuestos fueran debidamente documentadas y plasmadas en los trabajos científicos, lo cual lamentablemente no pasa muy a menudo.\nExisten por supuesto métodos que no dependen de todos estos supuestos (por ejemplo: regresiones lineales Bayesianas, modelos lineales generalizados correctamente parametrizados) pero no son parte de este curso."
+  },
+  {
+    "objectID": "biohack-modulo7.html#transformación-de-datos",
+    "href": "biohack-modulo7.html#transformación-de-datos",
+    "title": "biohack-modulo7",
+    "section": "Transformación de datos",
+    "text": "Transformación de datos\n\n\n\nreg1 &lt;- lm(SVL.final ~ Age.DPO, data = ranas)\npar(mfrow = c(2, 2))\nplot(reg1)\npar(mfrow = c(1, 1))\n\n\n\n\n\n\n\n\n\n\n\n\nreg1 &lt;- lm(log(SVL.final) ~ log(Age.DPO), data = ranas)\npar(mfrow = c(2, 2))\nplot(reg1)\npar(mfrow = c(1, 1))"
+  },
+  {
+    "objectID": "biohack-modulo7.html#interpretación-de-la-regresión-lineal",
+    "href": "biohack-modulo7.html#interpretación-de-la-regresión-lineal",
+    "title": "biohack-modulo7",
+    "section": "Interpretación de la regresión lineal",
+    "text": "Interpretación de la regresión lineal\n\\[\ny = mx + b\n\\]\n\n\n\n\n\nCall:\nlm(formula = log(SVL.final) ~ log(Age.DPO), data = ranas)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.182298 -0.049070  0.000516  0.038342  0.159057 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   3.44001    0.09211  37.345  &lt; 2e-16 ***\nlog(Age.DPO) -0.11624    0.02232  -5.208 1.58e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.06244 on 76 degrees of freedom\nMultiple R-squared:  0.263, Adjusted R-squared:  0.2533 \nF-statistic: 27.12 on 1 and 76 DF,  p-value: 1.581e-06\n\n\n\nPor cada incremento en una unidad del logaritmo de Age.DPO, tenemos 0.12 unidades en descenso del logaritmo de SVL.final\n\n\n\nggplot(ranas, aes(x = log(Age.DPO), y = log(SVL.final))) +\n  geom_point()+\n  geom_smooth(method = \"lm\")"
+  },
+  {
+    "objectID": "biohack-modulo7.html#interpretación-de-la-regresión-lineal-1",
+    "href": "biohack-modulo7.html#interpretación-de-la-regresión-lineal-1",
+    "title": "biohack-modulo7",
+    "section": "Interpretación de la regresión lineal",
+    "text": "Interpretación de la regresión lineal\n\n\nSin embargo una interpretación en la escala logarítmica no es completamente entendible, al menos para alguien ajeno al análisis que realizamos.\nPodríamos hacer la retransformación de las variables a sus unidades originales y generar un gráfico de las predicciones. A la final se reduce a matemática básica.\nAfortunadamente la librería {ggeffects} nos puede ayudar\n\n\n\n\n\n\nlibrary(ggeffects)\npredicciones &lt;- ggpredict(reg1)\npredicciones\n\n$Age.DPO\n# Predicted values of SVL.final\n\nAge.DPO | Predicted |       95% CI\n----------------------------------\n     35 |     20.63 | 20.05, 21.23\n     50 |     19.79 | 19.46, 20.13\n     60 |     19.38 | 19.11, 19.65\n     75 |     18.88 | 18.57, 19.20\n     90 |     18.48 | 18.08, 18.90\n    105 |     18.16 | 17.66, 18.67\n    120 |     17.88 | 17.30, 18.48\n    145 |     17.49 | 16.79, 18.22\n\n\n\nattr(,\"class\")\n[1] \"ggalleffects\" \"list\"        \nattr(,\"model.name\")\n[1] \"reg1\"\n\n\n\n\nplot(predicciones$Age.DPO)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#regresión-lineal-múltiple-en-r",
+    "href": "biohack-modulo7.html#regresión-lineal-múltiple-en-r",
+    "title": "biohack-modulo7",
+    "section": "Regresión lineal múltiple en R",
+    "text": "Regresión lineal múltiple en R\n\n\nEs usada para predecir una sola variable continua (y) en función de múltiples predictores continuos (un set de variables X).\nTiene prácticamente los mismos supuestos que la regresión lineal simple:\n\nLinearidad de los predictores\nHomogeneidad de la varianza (homocedasticidad)\nIndependencia de los errores (residuos)\nNormalidad de los residuos\nIndependencia de los predictores\n\nUn ejemplo de una regresión múltiple podría expresarse mediante la siguiente ecuación\n\n\n\n\\[\\begin{align}\ny &= \\beta_0 + \\beta_1\\,X_1 + \\beta_2\\,X_2 \\dots \\beta_n\\,X_n\n\\end{align}\\]"
+  },
+  {
+    "objectID": "biohack-modulo7.html#pasos-para-una-regresión-múltiple",
+    "href": "biohack-modulo7.html#pasos-para-una-regresión-múltiple",
+    "title": "biohack-modulo7",
+    "section": "Pasos para una regresión múltiple",
+    "text": "Pasos para una regresión múltiple\n\n\nEl llegar a un modelo apropiado se convierte en lo que algunos estadísticos llaman el “arte de modelar”:\n\nEmpezar por lo que se le conoce como un modelo completo (incluyendo todas las variables continuas disponibles).\nRealizar una selección automática de variables sobre el modelo del paso 1.\nChecar manualmente por colinearidad entre las variables del modelo resultante del paso 2.\nRevisar si las variables incluidas tienen sentido (biológico),\nChecar los supuestos de normalidad y homocedasticidad.\nRealizar transformaciones de ser necesario.\nInterpretar resultados.\n\nEstos pasos son solo mi recomendación. Dependiendo del problema, quizá ni siquiera sirvan y sus análisis estarán de la mano de más de su buen entendimiento de los datos y los fenómenos que deseen explicar."
+  },
+  {
+    "objectID": "biohack-modulo7.html#datos-que-usaremos",
+    "href": "biohack-modulo7.html#datos-que-usaremos",
+    "title": "biohack-modulo7",
+    "section": "Datos que usaremos",
+    "text": "Datos que usaremos\n\n\nUsaremos los datos de rotavirus en Berlin del archivo de Excel “rotXLS.xlsx” que contiene información sobre el conteo de casos de rotavirus en Berlín desde el año 2001 hasta el 2020.\nSupongámos que queremos modelar la variable cases en función de todas las variables metereológicas a nuestra disposición. Para esto, aquí la descripción de esta tabla de datos\n\n\n\n\n\ndate: fecha de cierre de la toma de datos\ncases: número de casos de rotavirus en la semana\nweek: semana epidemiológica\nincidence: número de casos/100000 habitantes\nFM: media diaria de velocidad del viento (m/s)\nRSK: media diaria de lluvia (mm)\n\n\n\nSHK_TAG: media diaria de nieve (cm)\nPM: media diaria de presión atmosférica (hPa)\nTMK: media diaria de temperatura (°C)\nTXK: media diaria de temperatura máxima (°C)\nTNK: media diaria de temperatura mínima (°C)\nUPM: media diaria de humedad relativa (%)\n\n\n\n\nSin embargo, antes de continuar, debemos hacer un preprocesamiento de datos ya que en la estructura original de estos se considera un efecto temporal dado por los años. Para simplificarlo, agruparemos los datos por meses y semanas epidemiológicas."
+  },
+  {
+    "objectID": "biohack-modulo7.html#preprocesamiento-de-datos",
+    "href": "biohack-modulo7.html#preprocesamiento-de-datos",
+    "title": "biohack-modulo7",
+    "section": "Preprocesamiento de datos",
+    "text": "Preprocesamiento de datos\n\nAsegúrate de tener instaladas las librerías {dplyr} y {lubridate} antes de correr este código\n\n\nlibrary(dplyr)\nlibrary(readxl)\nlibrary(lubridate)\nrot_berlin &lt;- read_excel(\"datos/rotXLS.xlsx\")\nrot_berlin$month &lt;- month(rot_berlin$date)\nrot_berlin &lt;- rot_berlin %&gt;%\n  group_by(month, week) %&gt;%\n  summarise(incidence = mean(incidence),\n            cases = round(mean(cases),0),\n            FM = mean(FM),\n            RSK = mean(RSK),\n            SHK_TAG = mean(SHK_TAG),\n            PM = mean(PM),\n            TMK = mean(TMK),\n            TXK = mean(TXK),\n            TNK = mean(TNK),\n            UPM = mean(UPM))\nrot_berlin$month &lt;- as.factor(rot_berlin$month)\nrot_berlin$week &lt;- as.factor(rot_berlin$week)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#modelo-completo",
+    "href": "biohack-modulo7.html#modelo-completo",
+    "title": "biohack-modulo7",
+    "section": "Modelo completo",
+    "text": "Modelo completo\n\nEmpezaremos formulando un modelo completo para estos datos de la siguiente manera:\n\n\nlm1 &lt;- lm(cases ~ FM + RSK + SHK_TAG + PM + TMK + TXK + TNK + UPM, data = rot_berlin)\n\n\n\nEn la función lm se pueden incluir términos de órdenes superiores (interacciones, cuadrados, cubos, etc) con variables continuas.\nPor simplicidad, únicamente consideraremos predictores de primer orden.\nEs importante tener en cuenta que así incluyésemos términos de órdenes superiores en lm, todavía sería considerado un modelo lineal ya que los coeficientes de estos términos seguirán siendo estimados de manera lineal (la variable de respuesta es una combinación lineal de los predictores que puede o no incluir transformaciones lineales de estos últimos).\nUn ejemplo de una relación no lineal de los predictores se da cuando los coeficientes de la ecuación forman parte de expresiones no lineales:\n\n\n\n\\[\ny = \\beta_{1}e^{\\beta_2X}\n\\]"
+  },
+  {
+    "objectID": "biohack-modulo7.html#selección-de-variables",
+    "href": "biohack-modulo7.html#selección-de-variables",
+    "title": "biohack-modulo7",
+    "section": "Selección de variables",
+    "text": "Selección de variables\n\n\nLa selección automática de variables funciona con un algoritmo relativamente sencillo:\n\nRetira una variable a la vez del modelo, calcula un criterio de comparación y repite el proceso\nUsa ese criterio de comparación con respecto a un modelo nulo (sin ningún predictor) y devuelve el modelo que haya obtenido la mejor valoración.\n\nEl criterio de evaluación más usado para comparar modelos es el denominado criterio de información de Akaike (AIC), y es un estimador del error de predicción. Mientras menos sea el valor de AIC, mejores las predicciones que un modelo teoricamente será capaz de realizar.\nRealizamos la selección de variables antes de cualquier diagnóstico o transformación ya que a veces estas últimas “exageran” la importancia de las variables en el caso de hacer la selección después.\nLa manera más sencilla de hacer una selección de variables es usando la función base de R step\n\n\n\n\nstep(lm1)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#selección-de-variables-1",
+    "href": "biohack-modulo7.html#selección-de-variables-1",
+    "title": "biohack-modulo7",
+    "section": "Selección de variables",
+    "text": "Selección de variables\n\nstep(lm1)\n\nStart:  AIC=372.26\ncases ~ FM + RSK + SHK_TAG + PM + TMK + TXK + TNK + UPM\n\n          Df Sum of Sq   RSS    AIC\n- TNK      1       2.8 15135 370.27\n- RSK      1      18.7 15151 370.34\n- SHK_TAG  1      42.4 15175 370.44\n&lt;none&gt;                 15132 372.26\n- FM       1     658.0 15790 373.03\n- TMK      1     830.7 15963 373.74\n- PM       1     887.1 16019 373.97\n- TXK      1    1259.3 16392 375.46\n- UPM      1    3660.8 18793 384.35\n\nStep:  AIC=370.27\ncases ~ FM + RSK + SHK_TAG + PM + TMK + TXK + UPM\n\n          Df Sum of Sq   RSS    AIC\n- RSK      1      17.7 15153 368.35\n- SHK_TAG  1      60.8 15196 368.53\n&lt;none&gt;                 15135 370.27\n- FM       1     697.7 15833 371.20\n- PM       1     889.7 16025 371.99\n- TXK      1    1888.5 17024 375.92\n- TMK      1    4107.8 19243 383.88\n- UPM      1    5612.2 20747 388.78\n\nStep:  AIC=368.35\ncases ~ FM + SHK_TAG + PM + TMK + TXK + UPM\n\n          Df Sum of Sq   RSS    AIC\n- SHK_TAG  1      57.9 15211 366.60\n&lt;none&gt;                 15153 368.35\n- FM       1     683.9 15837 369.22\n- PM       1     926.0 16079 370.21\n- TXK      1    2063.6 17216 374.65\n- TMK      1    4347.8 19501 382.75\n- UPM      1    5962.0 21115 387.92\n\nStep:  AIC=366.6\ncases ~ FM + PM + TMK + TXK + UPM\n\n       Df Sum of Sq   RSS    AIC\n&lt;none&gt;              15211 366.60\n- FM    1     698.0 15909 367.51\n- PM    1    1160.5 16371 369.38\n- TXK   1    2076.5 17287 372.92\n- TMK   1    4423.5 19634 381.19\n- UPM   1    5958.9 21169 386.09\n\n\n\nCall:\nlm(formula = cases ~ FM + PM + TMK + TXK + UPM, data = rot_berlin)\n\nCoefficients:\n(Intercept)           FM           PM          TMK          TXK          UPM  \n   2503.898       -7.526       -2.219      -19.360       12.304       -2.425"
+  },
+  {
+    "objectID": "biohack-modulo7.html#multicolinearidad",
+    "href": "biohack-modulo7.html#multicolinearidad",
+    "title": "biohack-modulo7",
+    "section": "Multicolinearidad",
+    "text": "Multicolinearidad\n\nDe acuerdo a la selección automática, nuestro modelo sería hasta el momento:\n\n\ncases ~ FM + PM + TMK + TXK + UPM\n\n\n\nNingún método de selección de variables automático es perfecto.\nEn este caso, aunque obvio, sabemos que las variables TMK y TXK deben estar correlacionadas al ser medidas de temperatura correspondientes al mismo día.\nBien podríamos deshechar una de las dos, pero cuando no sabemos la naturaleza de las variables, es mejor llevar a cabo un análisis de correlación antes de checar el modelo por sus supuestos.\nCuando exploramos datos (módulo 4) ya hicimos una primera aproximación con las matrices de dispersión (paquete {GGally}. Sin embargo, en ellas solo vimos el coeficiente de correlación junto al código de significancia.\nPara estar seguros de que eliminaremos variables correctamente, es mejor dar un vistazo a las matrices de correlación directamente."
+  },
+  {
+    "objectID": "biohack-modulo7.html#matrices-de-correlación",
+    "href": "biohack-modulo7.html#matrices-de-correlación",
+    "title": "biohack-modulo7",
+    "section": "Matrices de correlación",
+    "text": "Matrices de correlación\n\nPara calcular la matriz de correlación de un conjunto de datos usaremos la librería {Hmisc}\n\n\nlibrary(Hmisc)\nmatriz &lt;- rcorr(as.matrix(rot_berlin[,c(5, 8, 9, 10, 12)]))\nmatriz\n\n       FM    PM   TMK   TXK   UPM\nFM   1.00 -0.38 -0.67 -0.66  0.22\nPM  -0.38  1.00  0.14  0.14 -0.02\nTMK -0.67  0.14  1.00  1.00 -0.65\nTXK -0.66  0.14  1.00  1.00 -0.70\nUPM  0.22 -0.02 -0.65 -0.70  1.00\n\nn= 65 \n\n\nP\n    FM     PM     TMK    TXK    UPM   \nFM         0.0019 0.0000 0.0000 0.0824\nPM  0.0019        0.2768 0.2771 0.8562\nTMK 0.0000 0.2768        0.0000 0.0000\nTXK 0.0000 0.2771 0.0000        0.0000\nUPM 0.0824 0.8562 0.0000 0.0000       \n\n\n\n\nEn este paso, recomiendo el mirar por fuera de la diagonal y eliminar del análisis una variable de cualquier par que tenga un coeficiente de correlación exactamente igual a 1. En este caso, eliminaré TMK"
+  },
+  {
+    "objectID": "biohack-modulo7.html#tiene-todo-esto-sentido",
+    "href": "biohack-modulo7.html#tiene-todo-esto-sentido",
+    "title": "biohack-modulo7",
+    "section": "¿Tiene todo esto sentido?",
+    "text": "¿Tiene todo esto sentido?\n\nHasta aquí, nuestro modelo candidato sería el siguiente\n\n\ncases ~ FM + PM + TXK + UPM\n\n\n\nLos algoritmos usados aplican criterios estadísticos que no necesariamente denotan características biológicas.\nConsiderando que el rotavirus se contagia principalmente por contacto directo o indirecto con heces fecales de alguien infectado y no se ha reportado ningún caso de transmisión por aire contaminado, ¿tiene sentido mantener las variables FM (velocidad media diaria del viento) y PM (presión atmosférica media diaria) como parte del modelo?\nPersonalmente, pienso que no. Para mí, el modelo candidato sería el siguiente\n\n\n\n\nlm2 &lt;- lm(cases ~ TXK + UPM, data = rot_berlin)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple",
+    "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple",
+    "title": "biohack-modulo7",
+    "section": "Diagnósticos de la regresión múltiple",
+    "text": "Diagnósticos de la regresión múltiple\n\n\nUna vez que tengo definido mi modelo candidato lo pondré a prueba de los supuestos:\n\n\n\n\nlm2 &lt;- lm(cases ~ TXK + UPM, data = rot_berlin)\n\n\n\nVamos a introducir otra librería muy útil cuando nos encontramos ante modelos de múltiples variables: {performance}.\n{performance} nos ofrece la posibilidad de chequear dos diagnósticos adicionales:\n\nLa predicción del modelo (basándose en una aproximación Bayesiana)\nLa colinearidad\n\nTambién se lo puede utilizar para modelos univariables (como la regresión lineal).\n\n\n\n\n\nlibrary(performance)\ncheck_model(lm2)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-1",
+    "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-1",
+    "title": "biohack-modulo7",
+    "section": "Diagnósticos de la regresión múltiple",
+    "text": "Diagnósticos de la regresión múltiple"
+  },
+  {
+    "objectID": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-2",
+    "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-2",
+    "title": "biohack-modulo7",
+    "section": "Diagnósticos de la regresión múltiple",
+    "text": "Diagnósticos de la regresión múltiple\n\n\n\n\n\n\n\n\nChequeo de la predicción posterior\nEste gráfico contrapone la densidad de la distribución de la variable de respuesta con las densidades de las predicciones obtenidas del modelo mediante un proceso de sampleo Bayesiano (por eso apreciamos varias líneas azules). Nos da una idea de qué tan adecuado es nuestro modelo para predecir los valores observados. Idealmente estas dos deberían superponerse."
+  },
+  {
+    "objectID": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-3",
+    "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-3",
+    "title": "biohack-modulo7",
+    "section": "Diagnósticos de la regresión múltiple",
+    "text": "Diagnósticos de la regresión múltiple\n\n\n\n\n\n\n\n\n\n\n\n\nChequeo de la colinearidad\nAquí vemos distribuidas en el eje X cada una de las variables que estamos usando como predictores mientras que en el eje Y tenemos el factor de inflación de la varianza (VIF) que cada una de estas contribuye al modelo. Nos da una idea de que variables podríamos eliminar basados en mantener únicamente variables independientes entre sí como predictores."
+  },
+  {
+    "objectID": "biohack-modulo7.html#transformaciones",
+    "href": "biohack-modulo7.html#transformaciones",
+    "title": "biohack-modulo7",
+    "section": "Transformaciones",
+    "text": "Transformaciones\n\n\nDel gráfico de la predicción posterior evidenciamos que los datos observados de incidencia de rotavirus son asimétricos hacia la izquierda (o asimetría positiva).\nUsualmente la transformación que mejor funciona en este caso es el logaritmo natural.\n\n\n\n\nlm3 &lt;- lm(log(cases + 1) ~ TXK + UPM, data = rot_berlin)\ncheck_model(lm3)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#transformaciones-1",
+    "href": "biohack-modulo7.html#transformaciones-1",
+    "title": "biohack-modulo7",
+    "section": "Transformaciones",
+    "text": "Transformaciones"
+  },
+  {
+    "objectID": "biohack-modulo7.html#removiendo-outliers",
+    "href": "biohack-modulo7.html#removiendo-outliers",
+    "title": "biohack-modulo7",
+    "section": "Removiendo outliers",
+    "text": "Removiendo outliers\n\n\nLa distancia de Cook nos ha ayudado a identificar una observación claramente influyente.\nPara continuar, removeremos esa observación para ver que tanto ayuda a nuestro análisis.\n\n\n\n\nrot_berlin_out &lt;- rot_berlin[-22, ]\nlm4 &lt;- lm(log(cases + 1) ~ TXK + UPM, data = rot_berlin_out)\ncheck_model(lm4)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#removiendo-outliers-1",
+    "href": "biohack-modulo7.html#removiendo-outliers-1",
+    "title": "biohack-modulo7",
+    "section": "Removiendo outliers",
+    "text": "Removiendo outliers"
+  },
+  {
+    "objectID": "biohack-modulo7.html#modelo-final",
+    "href": "biohack-modulo7.html#modelo-final",
+    "title": "biohack-modulo7",
+    "section": "Modelo final",
+    "text": "Modelo final\n\n\nUna vez que hemos llegado a nuestro modelo, revisamos los resultados (este paso lo pudimos hacer en cada paso)\n\n\n\n\nsummary(lm4)\n\n\nCall:\nlm(formula = log(cases + 1) ~ TXK + UPM, data = rot_berlin_out)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1.56135 -0.25645 -0.01463  0.23747  0.89716 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 15.115325   0.785118   19.25   &lt;2e-16 ***\nTXK         -0.156583   0.009426  -16.61   &lt;2e-16 ***\nUPM         -0.126306   0.008891  -14.21   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.4208 on 61 degrees of freedom\nMultiple R-squared:  0.8241,    Adjusted R-squared:  0.8184 \nF-statistic: 142.9 on 2 and 61 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "biohack-modulo7.html#interpretación",
+    "href": "biohack-modulo7.html#interpretación",
+    "title": "biohack-modulo7",
+    "section": "Interpretación",
+    "text": "Interpretación\n\n\n\n\n\nCall:\nlm(formula = log(cases + 1) ~ TXK + UPM, data = rot_berlin_out)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1.56135 -0.25645 -0.01463  0.23747  0.89716 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 15.115325   0.785118   19.25   &lt;2e-16 ***\nTXK         -0.156583   0.009426  -16.61   &lt;2e-16 ***\nUPM         -0.126306   0.008891  -14.21   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.4208 on 61 degrees of freedom\nMultiple R-squared:  0.8241,    Adjusted R-squared:  0.8184 \nF-statistic: 142.9 on 2 and 61 DF,  p-value: &lt; 2.2e-16\n\n\n\n\nPor cada incremento de una unidad de TXK, el número de casos decrece 0.16 unidades, teniendo el resto de variables constantes.\nPor cada incremente de una unidad de UPM, el número de casos decrece 0.13 unidades, teniendo el resto de variables constantes.\nPero ten presente que este resultado está en escala logarítmica"
+  },
+  {
+    "objectID": "biohack-modulo7.html#interpretación-1",
+    "href": "biohack-modulo7.html#interpretación-1",
+    "title": "biohack-modulo7",
+    "section": "Interpretación",
+    "text": "Interpretación\n\nHaremos uso nuevamente de la librería {ggeffects} para lidiar con la retransformación y {ggplot2} junto a {patchwork} para graficar las predicciones.\n\n\n\n\nlibrary(ggeffects)\nlibrary(ggplot2)\nlibrary(patchwork)\npredicciones &lt;- ggpredict(lm4)\npredicciones[[1]]\n\n# Predicted values of cases\n\nTXK | Predicted |         95% CI\n--------------------------------\n  0 |    243.15 | 180.49, 327.44\n  5 |    110.59 |  89.35, 136.83\n 10 |     50.01 |  43.45,  57.53\n 15 |     22.31 |  19.98,  24.90\n 20 |      9.66 |   8.22,  11.32\n 25 |      3.87 |   2.91,   5.07\n 30 |      1.23 |   0.64,   2.03\n\nAdjusted for:\n* UPM = 76.14\n\n\n\n\npredicciones[[2]]\n\n# Predicted values of cases\n\nUPM | Predicted |         95% CI\n--------------------------------\n 60 |    186.40 | 137.04, 253.40\n 65 |     98.65 |  78.63, 123.71\n 70 |     51.99 |  44.54,  60.67\n 75 |     27.18 |  24.32,  30.37\n 80 |     13.99 |  12.22,  15.99\n 85 |      6.97 |   5.59,   8.63\n 90 |      3.24 |   2.24,   4.54\n 95 |      1.25 |   0.59,   2.20\n\nAdjusted for:\n* TXK = 14.71"
+  },
+  {
+    "objectID": "biohack-modulo7.html#interpretación-2",
+    "href": "biohack-modulo7.html#interpretación-2",
+    "title": "biohack-modulo7",
+    "section": "Interpretación",
+    "text": "Interpretación\n\np1 &lt;- predicciones[[1]]\np2 &lt;- predicciones[[2]]\nplot(p1) + plot(p2)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#el-mágico-r2",
+    "href": "biohack-modulo7.html#el-mágico-r2",
+    "title": "biohack-modulo7",
+    "section": "El mágico \\(R^2\\)",
+    "text": "El mágico \\(R^2\\)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#el-mágico-r2-1",
+    "href": "biohack-modulo7.html#el-mágico-r2-1",
+    "title": "biohack-modulo7",
+    "section": "El mágico \\(R^2\\)",
+    "text": "El mágico \\(R^2\\)\n\n\nQuizá muchos hayan escuchado que un \\(R^2\\) cercano a 1 es “ideal” cuando realizamos una regresión lineal.\nRecuerdo incluso haber sido indoctrinado acerca de márgenes para un buen \\(R^2\\) (algo así como que por encima del 80% es “bueno”, mayor al 90% es excelente y 100% es el Nirvana).\nEn breve, \\(R^2\\) NO ES NINGUNA DE LAS SIGUIENTES COSAS:\n\nUna métrica de bondad de ajuste: no nos dice si el modelo se ajusta bien a los datos.\nUna métrica del error de predicción: no mide para nada que tan bueno es el modelo para predecir futuras observaciones.\nUna métrica que permita comparar modelos usando variables transformadas: es común jugar a transformar los datos para ver de que manera se puede inflarlo hacia el santo grial.\nUna métrica que permita que tan bien una variable explica otra: en el ejemplo que vimos, y en toda regresión lineal, si cambiamos el predictor por respuesta y viceversa, tendremos exactamente el mismo \\(R^2\\)\n\n\\(R^2\\) es simplemente una medida de la cantidad de variación que un modelo específico explica. ¿Tiene alguna utilidad práctica? no lo sé, en 10 años como estadístico no lo he usado nunca, al menos no, voluntariamente…"
+  },
+  {
+    "objectID": "biohack-modulo7.html#el-mágico-r2-2",
+    "href": "biohack-modulo7.html#el-mágico-r2-2",
+    "title": "biohack-modulo7",
+    "section": "El mágico \\(R^2\\)",
+    "text": "El mágico \\(R^2\\)\n\n\nLo que visto es carnicerías de datos por inflar \\(R^2\\) debido a esta mala interpretación que no se sabe su origen exacto (pero quizá aquí uno de tantos culpables perdidos en la historia).\n\n\n\n\nAcá les dejo unos cuantos recursos que pueden revisar en más detalle si les interesa:\n\nEl paper “How not to lie with Statistics: Avoiding common mistakes in Quantitative Political Science” Un artículo extenso pero que contiene una sección dedicada a desmitificar esta mala práctica.\nLas notas de la clase del Prof. Cosma Shalizi de la Universidad Carnegie Mellon donde hermosamente destruye los mitos en torno al \\(R^2\\) citando fórmulas y principios estadísticos.\nUn blog de Clay Ford, consultor estadístico de la Universidad de Virginia donde demuestra con R que valores de \\(R^2\\) cercanos a 0 no necesariamente implican un mal modelo, ni valores cercanos 1 son indicativo de modelos destacados."
+  },
+  {
+    "objectID": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo",
+    "href": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo",
+    "title": "biohack-modulo7",
+    "section": "El mágico \\(R^2\\) en nuestro ejemplo",
+    "text": "El mágico \\(R^2\\) en nuestro ejemplo\n\n\nMediante la función compare_performance de la librería {performance}, se puede obtener un gráfico de telarañas que permite ver como el \\(R^2\\) no sirve de nada ante modelos mejor formulados.\nAhora recordemos que al final eliminamos un outlier con el modelo que mejores diagnósticos terminamos. Para poner a todos los modelos candidatos en igualdad de condiciones, los corremos de nuevo sin ese outlier (además de utilizar una variable previamente transformada para los modelos 3 y 4, ya que {performance} no es capaz de retransformar por si solo)\n\n\n\n\nrot_berlin$cases_comp &lt;- rot_berlin$cases + 1\nrot_berlin_out$cases_comp &lt;- rot_berlin_out$cases + 1\nlm1.1 &lt;- lm(cases ~ FM + RSK + SHK_TAG + PM + TMK + TXK + TNK + UPM, data = rot_berlin_out)\nlm2.1 &lt;- lm(cases ~ TXK + UPM, data = rot_berlin_out)\nlm3.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\nlm4.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\n\ncompare_performance(lm1.1, lm2.1, lm3.1, lm4.1, rank = T)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo-1",
+    "href": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo-1",
+    "title": "biohack-modulo7",
+    "section": "El mágico \\(R^2\\) en nuestro ejemplo",
+    "text": "El mágico \\(R^2\\) en nuestro ejemplo\n\n\n\nrot_berlin$cases_comp &lt;- rot_berlin$cases + 1\nrot_berlin_out$cases_comp &lt;- rot_berlin_out$cases + 1\nlm1.1 &lt;- lm(cases ~ FM + RSK + SHK_TAG + PM + TMK + TXK + TNK + UPM, data = rot_berlin_out)\nlm2.1 &lt;- lm(cases ~ TXK + UPM, data = rot_berlin_out)\nlm3.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\nlm4.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\n\ncompare_performance(lm1.1, lm2.1, lm3.1, lm4.1, rank = T)\n\n# Comparison of Model Performance Indices\n\nName  | Model |    R2 | R2 (adj.) |   RMSE |  Sigma | AIC weights | AICc weights | BIC weights | Performance-Score\n------------------------------------------------------------------------------------------------------------------\nlm3.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500 |        0.500 |       0.500 |            94.93%\nlm4.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500 |        0.500 |       0.500 |            94.93%\nlm1.1 |    lm | 0.847 |     0.825 | 12.989 | 14.011 |    7.53e-11 |     1.33e-11 |    1.16e-13 |            33.96%\nlm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14 |    1.26e-14 |             0.00%\n\n\n\n\nplot(compare_performance(lm1.1, lm2.1, lm3.1, lm4.1))"
+  },
+  {
+    "objectID": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo-2",
+    "href": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo-2",
+    "title": "biohack-modulo7",
+    "section": "El mágico \\(R^2\\) en nuestro ejemplo",
+    "text": "El mágico \\(R^2\\) en nuestro ejemplo\n\n\n\nEl mejor modelo de acuerdo al mágico \\(R^2\\)\n\n\ncheck_model(lm1.1)\n\n\n\n\n\n\n\n\n\n\nNuestro pobre pero honrado mejor modelo\n\n\ncheck_model(lm4.1)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#qué-son-los-modelos-lineales-generalizados",
+    "href": "biohack-modulo7.html#qué-son-los-modelos-lineales-generalizados",
+    "title": "biohack-modulo7",
+    "section": "¿Qué son los modelos lineales generalizados?",
+    "text": "¿Qué son los modelos lineales generalizados?\n\n\nEn breve, los modelos lineales generalizados son aquellos que no consideran normalmente distribuida a la variable de interés.\nToman este nombre ya que generalizan la regresión lineal al permitirle relacionarse con la variable de respuesta a través de una función de enlace que transforma a esta última a la escala normal.\nPor tanto, estos modelos también compartirán los supuestos de la homogeneidad de la varianza y normalidad de los residuos. Aunque dependiendo de cada función de enlace a usarse, habrán otros estadísticos de interés.\nEn vista de lo basta que es la metodología dentro de este apartado de la estadística, nos enfocaremos en tan solo dos ejemplos:\n\nLa regresión de Poisson\nLa regresión binomial negativa"
+  },
+  {
+    "objectID": "biohack-modulo7.html#regresión-de-poisson-en-r",
+    "href": "biohack-modulo7.html#regresión-de-poisson-en-r",
+    "title": "biohack-modulo7",
+    "section": "Regresión de Poisson en R",
+    "text": "Regresión de Poisson en R\n\n\nEn breve, la regresión de Poisson se usa para el modelado de datos discretos que representan el conteo de algún evento.\nEn el ejemplo que consideramos anteriormente, el número de casos de rotavirus es un ejemplo de este tipo de eventos.\nLa razón por la que ese modelo funcionó relativamente bien es porque inadvertidamente impusimos la función de enlace sobre los datos al aplicar la transformación logarítmica.\nVeamos que sucede al implementarla en R\n\n\n\n\nglm1 &lt;- glm(cases ~ TXK + UPM, data = rot_berlin_out, family = \"poisson\")\ncheck_model(glm1)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#regresión-de-poisson-en-r-1",
+    "href": "biohack-modulo7.html#regresión-de-poisson-en-r-1",
+    "title": "biohack-modulo7",
+    "section": "Regresión de Poisson en R",
+    "text": "Regresión de Poisson en R"
+  },
+  {
+    "objectID": "biohack-modulo7.html#regresión-binomial-negativa",
+    "href": "biohack-modulo7.html#regresión-binomial-negativa",
+    "title": "biohack-modulo7",
+    "section": "Regresión binomial negativa",
+    "text": "Regresión binomial negativa\n\n\nVemos que el modelo usando la regresión de Poisson no mejora mucho en términos de los supuestos.\nComo mencionamos, el gráfico de sobredispersión ya nos da un indicativo de que el modelo es incorrecto.\nUna alternativa para lidiar con sobredispersión es usar la regresión binomial negativa\nPara ello, usaremos la librería MASS que ofrece esta funcionalidad\n\n\n\n\nlibrary(MASS)\nglm2 &lt;- glm.nb(cases ~ TXK + UPM, data = rot_berlin_out)\ncheck_model(glm2)"
+  },
+  {
+    "objectID": "biohack-modulo7.html#regresión-binomial-negativa-1",
+    "href": "biohack-modulo7.html#regresión-binomial-negativa-1",
+    "title": "biohack-modulo7",
+    "section": "Regresión binomial negativa",
+    "text": "Regresión binomial negativa"
+  },
+  {
+    "objectID": "biohack-modulo7.html#comparación-de-modelos",
+    "href": "biohack-modulo7.html#comparación-de-modelos",
+    "title": "biohack-modulo7",
+    "section": "Comparación de modelos",
+    "text": "Comparación de modelos\n\n\nComparemos primero todos los modelos que hemos llevado a cabo hasta aquí sin rankearlos\n\n\n\n\nlibrary(flextable)\ncolformat_double(flextable(compare_performance(lm1.1, lm2.1, lm4.1, glm1, glm2)), digits = 3)\n\nNameModelAICAIC_wtAICcAICc_wtBICBIC_wtRMSESigmaR2_NagelkerkeScore_logScore_sphericalR2R2_adjustedlm1.1lm529.8250.000533.9760.000551.4140.00012.98914.0110.8470.825lm2.1lm547.2120.000547.8900.000555.8480.00016.34116.7380.7590.751lm4.1lm484.5910.112485.2690.112493.2270.1120.4110.4210.8240.818glm1glm681.4630.000681.8630.000687.9390.00017.4261.0001.000-5.2770.090glm2negbin480.4400.888481.1180.888489.0760.88820.8761.0000.995-3.8450.101"
+  },
+  {
+    "objectID": "biohack-modulo7.html#comparación-de-modelos-1",
+    "href": "biohack-modulo7.html#comparación-de-modelos-1",
+    "title": "biohack-modulo7",
+    "section": "Comparación de modelos",
+    "text": "Comparación de modelos\n\n\nAhora rankeados\n\n\n\n\ncolformat_double(flextable(compare_performance(lm1.1, lm2.1, lm4.1, glm1, glm2, rank = T)), digits = 3)\n\nNameModelRMSESigmaR2_NagelkerkeScore_logScore_sphericalR2R2_adjustedAIC_wtAICc_wtBIC_wtPerformance_Scoreglm2negbin20.8761.0000.995-3.8450.1010.8880.8880.8880.793lm4.1lm0.4110.4210.8240.8180.1120.1120.1120.475glm1glm17.4261.0001.000-5.2770.0900.0000.0000.0000.227lm1.1lm12.98914.0110.8470.8250.0000.0000.0000.111lm2.1lm16.34116.7380.7590.7510.0000.0000.0000.044"
+  },
+  {
+    "objectID": "biohack-modulo7.html#consideraciones-sobre-la-comparación-de-modelos",
+    "href": "biohack-modulo7.html#consideraciones-sobre-la-comparación-de-modelos",
+    "title": "biohack-modulo7",
+    "section": "Consideraciones sobre la comparación de modelos",
+    "text": "Consideraciones sobre la comparación de modelos\n\n\nLa versatilidad de {performance} es que nos permite comparar entre modelos provenientes de distintas metodologías estadísticas (hace no más de 5 años eso no era posible).\nSin embargo, hay que tener en cuenta que para que las comparaciones sean válidas, los modelos tienen que haber sido ajustados sobre los mismos datos.\nPor ejemplo, no hubiese sido correcto en este ejemplo comparar todos los modelos que llevamos a cabo sin que estos hubiesen sido ajustados sobre la tabla de datos sin el outlier."
+  },
+  {
+    "objectID": "biohack-modulo7.html#section-1",
+    "href": "biohack-modulo7.html#section-1",
+    "title": "biohack-modulo7",
+    "section": "",
+    "text": "Ejercicios 7.1"
+  },
+  {
+    "objectID": "biohack-modulo7.html#section-2",
+    "href": "biohack-modulo7.html#section-2",
+    "title": "biohack-modulo7",
+    "section": "",
+    "text": "Fin del módulo 7\n\n\n\n\n\n\n\nCréditos de fotos\n\n\nFoto portada por Nathana Rebouças en Unsplash\nFoto final por Furkan Elveren en Unsplash\nResto de fotos: Varias fuentes"
+  }
+]
