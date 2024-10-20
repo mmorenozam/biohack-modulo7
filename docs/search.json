@@ -410,7 +410,7 @@
     "href": "biohack-modulo7.html#consideraciones-antes-de-implementar-apc",
     "title": "biohack-modulo7",
     "section": "Consideraciones antes de implementar APC",
-    "text": "Consideraciones antes de implementar APC\n\n\nEl input de un APC pueden ser dos o más variables continuas. El APC clásico no puede lidiar con variables categóricas.\nDebido a las posibles diferencias en los órdenes de magnitud y varianzas entre las variables continuas objeto de estudio, es aconsejable el estandarizar los valores.\nEstandarizar un valor es convertirlo a una distribución normal con media cero y desviación estándar 1. R se encarga de este paso por nosotros.\nLos principales resultados del APC son dos: gráfico de puntuaciones y el gráfico de cargas\nPodemos hacer agrupaciones de sobre el gráfico de puntuaciones (o combinado con el de cargas) de una variable categórica a la vez."
+    "text": "Consideraciones antes de implementar APC\n\n\nEl input de un APC pueden ser dos o más variables continuas. El APC clásico no puede lidiar con variables categóricas.\nDebido a las posibles diferencias en los órdenes de magnitud y varianzas entre las variables continuas objeto de estudio, es aconsejable el estandarizar los valores.\nEstandarizar un valor es convertirlo a una distribución normal con media cero y desviación estándar 1. R se encarga de este paso por nosotros.\nLos datos para un PCA no necesariamente tienen que cumplir los supuestos de normalidad y homogeneidad de las varianzas, así tampoco necesitan ser totalmente independientes.\nLos principales resultados del APC son dos: gráfico de puntuaciones y el gráfico de cargas"
   },
   {
     "objectID": "biohack-modulo7.html#qué-no-hace-el-apc",
@@ -424,7 +424,14 @@
     "href": "biohack-modulo7.html#apc-en-r",
     "title": "biohack-modulo7",
     "section": "APC en R",
-    "text": "APC en R"
+    "text": "APC en R\nUsaremos una tabla de datos overdose.csv que contiene información del número de muertes por sobredosis de drogas sintéticas, heroína, metadona y causas naturales en 33 estados de los Estados Unidos.\n\ngit_url &lt;- \"https://raw.githubusercontent.com/mmorenozam/biohack-modulo7/refs/heads/main/overdose.csv\"\n\noverdose &lt;- read.csv(git_url)\n\nhead(overdose)\n\n  X   State year Heroin Methadone Natural Synthetic st region\n1 1 Arizona 2010     90       106     327        68 AZ   West\n2 2 Arizona 2011    117        55     313        40 AZ   West\n3 3 Arizona 2012    101        50     326        36 AZ   West\n4 4 Arizona 2013    146        64     253        52 AZ   West\n5 5 Arizona 2014    197        62     290        57 AZ   West\n6 6 Arizona 2015    247        75     298        72 AZ   West"
+  },
+  {
+    "objectID": "biohack-modulo7.html#apc-en-r-1",
+    "href": "biohack-modulo7.html#apc-en-r-1",
+    "title": "biohack-modulo7",
+    "section": "APC en R",
+    "text": "APC en R\nNos ayudaremos de la librería {ggbiplot} y la función R de base prcomp.\n\n\n\nlibrary(ggplot2)\nlibrary(ggbiplot)\n\noverdose.pc &lt;- prcomp(overdose[c(3:6)], scale.=T)\n\nggbiplot(overdose.pc, \n         groups = overdose$region,\n         labels = overdose$abb,\n         ellipse = T) + \n  coord_cartesian() +\n  theme_bw()"
   },
   {
     "objectID": "biohack-modulo7.html#section-2",

@@ -1,16 +1,22 @@
 library(ggbiplot)
 library(dplyr)
+library(usa)
 
-data(crime)
 
 deaded <- "https://raw.githubusercontent.com/jyu-theartofml/opioid_data/refs/heads/master/summary_data/type_counts.csv"
 
 deads <- read.csv(deaded)
 
-unique(deads$State)
+data(states)
+states
 
-intersect(deads$State, crime$state)
+deads <- left_join(deads, states[c(1,2,4)], by = c("State"="name"))
 
-deads <- left_join(deads, crime[c(1,9,10)], by = c("State"="state"))
+write.csv(deads, "overdose.csv", row.names = F)
 
-write.csv(deads, "overdose.csv")
+deads.pc <- prcomp(deads[c(3:6)], scale.=T)
+
+ggbiplot(deads.pc, 
+         groups = deads$region,
+         labels = deads$abb,
+         ellipse = T) + coord_cartesian()

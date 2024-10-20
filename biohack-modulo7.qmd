@@ -1281,6 +1281,59 @@ El APC no es un método estadístico dirigido a llevar pruebas de hipótesis o e
 
 ## APC en R
 
+Usaremos una tabla de datos `overdose.csv` que contiene información del número de muertes por sobredosis de drogas sintéticas, heroína, metadona y causas naturales en 33 estados de los Estados Unidos.
+
+```{r echo=T, eval=T, error=T, fig.width=6, fig.align='center'}
+git_url <- "https://raw.githubusercontent.com/mmorenozam/biohack-modulo7/refs/heads/main/overdose.csv"
+
+overdose <- read.csv(git_url)
+
+head(overdose)
+```
+
+## APC en R {.smaller visibility="uncounted"}
+
+Nos ayudaremos de la librería `{ggbiplot}` y la función R de base `prcomp`.
+
+::: columns
+::: {.column width="50%"}
+
+```{r echo=T, eval=F, error=T, fig.width=6, fig.align='center'}
+library(ggplot2)
+library(ggbiplot)
+
+overdose.pc <- prcomp(overdose[c(3:6)], scale.=T)
+
+ggbiplot(overdose.pc, 
+         groups = overdose$region,
+         labels = overdose$abb,
+         ellipse = T) + 
+  coord_cartesian() +
+  theme_bw()
+```
+
+:::
+
+::: {.column .fragment width="50%}
+
+```{r echo=F, eval=T, error=T, fig.width=6, fig.align='center'}
+library(ggplot2)
+library(ggbiplot)
+
+overdose.pc <- prcomp(overdose[c(3:6)], scale.=T)
+
+ggbiplot(overdose.pc, 
+         groups = overdose$region,
+         labels = overdose$abb,
+         ellipse = T) + 
+  coord_cartesian() +
+  theme_bw()
+```
+
+:::
+:::
+
+. . .
 
 
 ##
