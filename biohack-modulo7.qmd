@@ -1333,8 +1333,61 @@ ggbiplot(overdose.pc,
 :::
 :::
 
-. . .
+## APC en R {.smaller visibility="uncounted" .scrollable}
 
+::: columns
+::: {.column width="50%"}
+
+-   CP1: explica 63.5% de la varianza, representando en general las razones de muerte registradas, Nueva York (NY) al límite superior, y el resto de estados al límite inferior.
+
+-   CP2: explica 28.2% de la varianza, representando un contraste entre las muertes causadas por heroína y drogas sintéticas con respecto a las muertes de causas naturales y metadona. En este componente, los estados de Ohio (OH) y la Florida (FL) se encuentran opuestos.
+
+-   Las regiones son representadas por las diferencias en las causas de muerte registradas: en el medio oeste (Midwest) y noreste (Northeast), las drogas sintéticas y heroína producen mayores incidencias que con respecto a las regiones sur (South) y oeste (west) donde muestran más incidencias las muertes por causas naturales y metadona.
+
+-   Los ángulos de las cargas, al ser evidentemente menores a 90$^o$ denotan que las causas de muerte en la tabla de datos original están correlacionadas.
+
+:::
+
+::: {.column width="50%}
+<br>
+<br>
+
+```{r echo=F, eval=T, error=T, fig.width=6, fig.align='center'}
+library(ggplot2)
+library(ggbiplot)
+
+overdose.pc <- prcomp(overdose[c(3:6)], scale.=T)
+
+ggbiplot(overdose.pc, 
+         groups = overdose$region,
+         labels = overdose$abb,
+         ellipse = T) + 
+  coord_cartesian() +
+  theme_bw()
+```
+
+:::
+:::
+
+## {}
+
+::: columns
+::: {.column width="37.5%"}
+
+:::
+::: {.column width="60%"}
+
+::: {.title data-id="title"}
+[Ejercicios 7.2](https://mmorenozam.github.io/biohack-website/ejercicios_m7.html#ejercicios-7.2){target="_blank"}
+:::
+
+:::{.timer #Timer2 seconds=600 starton=interaction}
+:::
+
+:::
+:::
+
+![](images/timo-volz-ZlFKIG6dApg-unsplash.jpg){.image-left}
 
 ##
 
@@ -1349,6 +1402,7 @@ Fin del módulo 7
 
 Foto portada por <a href="https://unsplash.com/@nathanareboucas?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Nathana Rebouças</a> en <a href="https://unsplash.com/photos/a-person-holding-a-calculator-in-their-hand-AGLTICzftCc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
   
+Foto en Ejercicio 7.2 por <a href="https://unsplash.com/@magict1911?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Timo Volz</a> en <a href="https://unsplash.com/photos/orange-cat-stretching-on-white-surface-ZlFKIG6dApg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
   
 
 Foto final por <a href="https://unsplash.com/@furkanelveren?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Furkan Elveren</a> en <a href="https://unsplash.com/photos/a-hand-reaching-up-into-the-air-above-a-field-of-grass-20P5tXZFjEc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>

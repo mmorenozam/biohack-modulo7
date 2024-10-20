@@ -424,7 +424,7 @@
     "href": "biohack-modulo7.html#apc-en-r",
     "title": "biohack-modulo7",
     "section": "APC en R",
-    "text": "APC en R\nUsaremos una tabla de datos overdose.csv que contiene información del número de muertes por sobredosis de drogas sintéticas, heroína, metadona y causas naturales en 33 estados de los Estados Unidos.\n\ngit_url &lt;- \"https://raw.githubusercontent.com/mmorenozam/biohack-modulo7/refs/heads/main/overdose.csv\"\n\noverdose &lt;- read.csv(git_url)\n\nhead(overdose)\n\n  X   State year Heroin Methadone Natural Synthetic st region\n1 1 Arizona 2010     90       106     327        68 AZ   West\n2 2 Arizona 2011    117        55     313        40 AZ   West\n3 3 Arizona 2012    101        50     326        36 AZ   West\n4 4 Arizona 2013    146        64     253        52 AZ   West\n5 5 Arizona 2014    197        62     290        57 AZ   West\n6 6 Arizona 2015    247        75     298        72 AZ   West"
+    "text": "APC en R\nUsaremos una tabla de datos overdose.csv que contiene información del número de muertes por sobredosis de drogas sintéticas, heroína, metadona y causas naturales en 33 estados de los Estados Unidos.\n\ngit_url &lt;- \"https://raw.githubusercontent.com/mmorenozam/biohack-modulo7/refs/heads/main/overdose.csv\"\n\noverdose &lt;- read.csv(git_url)\n\nhead(overdose)\n\n    State year Heroin Methadone Natural Synthetic abb region\n1 Arizona 2010     90       106     327        68  AZ   West\n2 Arizona 2011    117        55     313        40  AZ   West\n3 Arizona 2012    101        50     326        36  AZ   West\n4 Arizona 2013    146        64     253        52  AZ   West\n5 Arizona 2014    197        62     290        57  AZ   West\n6 Arizona 2015    247        75     298        72  AZ   West"
   },
   {
     "objectID": "biohack-modulo7.html#apc-en-r-1",
@@ -434,10 +434,24 @@
     "text": "APC en R\nNos ayudaremos de la librería {ggbiplot} y la función R de base prcomp.\n\n\n\nlibrary(ggplot2)\nlibrary(ggbiplot)\n\noverdose.pc &lt;- prcomp(overdose[c(3:6)], scale.=T)\n\nggbiplot(overdose.pc, \n         groups = overdose$region,\n         labels = overdose$abb,\n         ellipse = T) + \n  coord_cartesian() +\n  theme_bw()"
   },
   {
+    "objectID": "biohack-modulo7.html#apc-en-r-2",
+    "href": "biohack-modulo7.html#apc-en-r-2",
+    "title": "biohack-modulo7",
+    "section": "APC en R",
+    "text": "APC en R\n\n\n\nCP1: explica 63.5% de la varianza, representando en general las razones de muerte registradas, Nueva York (NY) al límite superior, y el resto de estados al límite inferior.\nCP2: explica 28.2% de la varianza, representando un contraste entre las muertes causadas por heroína y drogas sintéticas con respecto a las muertes de causas naturales y metadona. En este componente, los estados de Ohio (OH) y la Florida (FL) se encuentran opuestos.\nLas regiones son representadas por las diferencias en las causas de muerte registradas: en el medio oeste (Midwest) y noreste (Northeast), las drogas sintéticas y heroína producen mayores incidencias que con respecto a las regiones sur (South) y oeste (west) donde muestran más incidencias las muertes por causas naturales y metadona.\nLos ángulos de las cargas, al ser evidentemente menores a 90\\(^o\\) denotan que las causas de muerte en la tabla de datos original están correlacionadas."
+  },
+  {
     "objectID": "biohack-modulo7.html#section-2",
     "href": "biohack-modulo7.html#section-2",
     "title": "biohack-modulo7",
     "section": "",
-    "text": "Fin del módulo 7\n\n\n\n\n\n\n\nCréditos de fotos\n\n\nFoto portada por Nathana Rebouças en Unsplash\nFoto final por Furkan Elveren en Unsplash\nResto de fotos: Varias fuentes"
+    "text": "Ejercicios 7.2"
+  },
+  {
+    "objectID": "biohack-modulo7.html#section-3",
+    "href": "biohack-modulo7.html#section-3",
+    "title": "biohack-modulo7",
+    "section": "",
+    "text": "Fin del módulo 7\n\n\n\n\n\n\n\nCréditos de fotos\n\n\nFoto portada por Nathana Rebouças en Unsplash\nFoto en Ejercicio 7.2 por Timo Volz en Unsplash\nFoto final por Furkan Elveren en Unsplash\nResto de fotos: Varias fuentes"
   }
 ]
