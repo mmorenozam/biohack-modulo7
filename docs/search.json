@@ -385,6 +385,48 @@
     "text": "Ejercicios 7.1"
   },
   {
+    "objectID": "biohack-modulo7.html#introducción",
+    "href": "biohack-modulo7.html#introducción",
+    "title": "biohack-modulo7",
+    "section": "Introducción",
+    "text": "Introducción\n\n\nLlamado también PCA (por sus siglas en Inglés), es un método estadístico multivariado que tiene por objetivo el reducir las dimensiones de un conjunto de datos.\nMediante esta reducción, se pueden simplificar y visualizar datos altamente complejos. Esto ayuda a la interpretación e identificación de procesos que de otra forma, no sería fácil el determinar.\nEs por esta razón que el PCA (ó APC) es popular en biología al ser este un campo donde comúnmente se generan datos que pueden contener cientos de filas y columnas.\nLas preguntas que se pueden contestar con APC incluyen:\n\n¿Qué muestras son más o menos similares entre sí?\n¿Qué variables independientes se comportan de manera similar?"
+  },
+  {
+    "objectID": "biohack-modulo7.html#introducción-1",
+    "href": "biohack-modulo7.html#introducción-1",
+    "title": "biohack-modulo7",
+    "section": "Introducción",
+    "text": "Introducción\n\nEl ACP encuentra la dirección de la máxima varianza en espacios multidimensionales a través de transformaciones lineales a un nuevo sistema coordenado.\n\n\n\n\n\n\n\n\n\n\n\nEste nuevo sistema coordenado está conformado por los llamados Componentes Principales (CP).\nExisten tantos CP como variables (dimensiones) tengan nuestros datos.\nCada componente es un una combinación lineal de las variables originales y buscan explicar la mayor cantidad de varianza posible. Por ello, es práctica común reportar solo los dos primeros CP"
+  },
+  {
+    "objectID": "biohack-modulo7.html#introducción-2",
+    "href": "biohack-modulo7.html#introducción-2",
+    "title": "biohack-modulo7",
+    "section": "Introducción",
+    "text": "Introducción\n\n\n\nLas contribuciones de cada variable en el eje del CP están indicadas por una flecha (carga).\nEstas cargas reflejan la correlación entre la variable y el CP.\nMientras más larga es la carga, mayor la correlación. Indicando que la variable es más importante en explicar/controlar la diferencia entre las muestras a lo largo del CP.\nEn el gráfico, \\(CO_3\\) y pH son por tanto las variables más importantes del CP1, y \\(Ca^{2+}\\) y Salinity del CP2"
+  },
+  {
+    "objectID": "biohack-modulo7.html#consideraciones-antes-de-implementar-apc",
+    "href": "biohack-modulo7.html#consideraciones-antes-de-implementar-apc",
+    "title": "biohack-modulo7",
+    "section": "Consideraciones antes de implementar APC",
+    "text": "Consideraciones antes de implementar APC\n\n\nEl input de un APC pueden ser dos o más variables continuas. El APC clásico no puede lidiar con variables categóricas.\nDebido a las posibles diferencias en los órdenes de magnitud y varianzas entre las variables continuas objeto de estudio, es aconsejable el estandarizar los valores.\nEstandarizar un valor es convertirlo a una distribución normal con media cero y desviación estándar 1. R se encarga de este paso por nosotros.\nLos principales resultados del APC son dos: gráfico de puntuaciones y el gráfico de cargas\nPodemos hacer agrupaciones de sobre el gráfico de puntuaciones (o combinado con el de cargas) de una variable categórica a la vez."
+  },
+  {
+    "objectID": "biohack-modulo7.html#qué-no-hace-el-apc",
+    "href": "biohack-modulo7.html#qué-no-hace-el-apc",
+    "title": "biohack-modulo7",
+    "section": "¿Qué NO hace el APC?",
+    "text": "¿Qué NO hace el APC?\n\nEl APC no es un método estadístico dirigido a llevar pruebas de hipótesis o estadística inferencial. En más detalle:\n\nNo valores p o pruebas de hipótesis: no provee valores p, intervalos de confianza o signficancia estadística como podemos esperar del ANOVA. Sirve para explicar varianza y encontrar patrones en los datos.\nNo es un modelo predictivo: no intenta predecir una variable dependiente en función de un set de variables independientes.\nNo tiene definición entre variables dependientes y explanatorias: trata a todas las variables de input por igual.\nNo provee interpretabilidad directa sobre las variables de input: al convertir las variables originales a un nuevo eje coordenado de componentes principales, no ofrece interpretaciones cuantitativas de las variables que forman parte de las combinaciones lineales que dieron lugar a los componentes principales."
+  },
+  {
+    "objectID": "biohack-modulo7.html#apc-en-r",
+    "href": "biohack-modulo7.html#apc-en-r",
+    "title": "biohack-modulo7",
+    "section": "APC en R",
+    "text": "APC en R"
+  },
+  {
     "objectID": "biohack-modulo7.html#section-2",
     "href": "biohack-modulo7.html#section-2",
     "title": "biohack-modulo7",

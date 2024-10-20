@@ -1185,6 +1185,104 @@ colformat_double(flextable(compare_performance(lm1.1, lm2.1, lm4.1, glm1, glm2, 
 
 ![](images/catxie.png){.image-left}
 
+# Análisis de Componentes Principales
+
+## Introducción {.smaller}
+
+::: incremental
+
+-   Llamado también PCA (por sus siglas en Inglés), es un método **estadístico** multivariado que tiene por objetivo el reducir las dimensiones de un conjunto de datos.
+
+-   Mediante esta reducción, se pueden simplificar y visualizar datos altamente complejos. Esto ayuda a la interpretación e identificación de procesos que de otra forma, no sería fácil el determinar.
+
+-   Es por esta razón que el PCA (ó APC) es popular en biología al ser este un campo donde comúnmente se generan datos que pueden contener cientos de filas y columnas.
+
+-   Las preguntas que se pueden contestar con APC incluyen:
+
+    -   ¿Qué muestras son más o menos similares entre sí?
+    
+    -   ¿Qué variables independientes se comportan de manera similar?
+    
+
+
+:::
+
+## Introducción {.smaller visibility="uncounted"}
+
+-   El ACP encuentra la dirección de la máxima varianza en espacios multidimensionales a través de transformaciones lineales a un nuevo sistema coordenado.
+
+. . .
+
+![](images/pca1.png){fig-align="center"}
+
+. . .
+
+::: incremental
+
+-   Este nuevo sistema coordenado está conformado por los llamados Componentes Principales (CP).
+
+-   Existen tantos CP como variables (dimensiones) tengan nuestros datos.
+
+-   Cada componente es un una combinación lineal de las variables originales y buscan explicar la mayor cantidad de varianza posible. Por ello, es práctica común reportar solo los dos primeros CP
+
+:::
+
+
+## Introducción {.smaller visibility="uncounted"}
+
+![](images/pca1.png){fig-align="center"}
+
+::: incremental
+
+-   Las contribuciones de cada variable en el eje del CP están indicadas por una flecha (carga).
+
+-   Estas cargas reflejan la correlación entre la variable y el CP. 
+
+-   Mientras más larga es la carga, mayor la correlación. Indicando que la variable es más importante en explicar/controlar la diferencia entre las muestras a lo largo del CP.
+
+-   En el gráfico, $CO_3$ y pH son por tanto las variables más importantes del CP1, y $Ca^{2+}$ y Salinity del CP2
+
+:::
+
+## Consideraciones antes de implementar APC {.smaller}
+
+
+::: incremental
+
+-   El input de un APC pueden ser dos o más variables continuas. El APC clásico no puede lidiar con variables categóricas.
+
+-   Debido a las posibles diferencias en los órdenes de magnitud y varianzas entre las variables continuas objeto de estudio, es aconsejable el estandarizar los valores.
+
+-   Estandarizar un valor es convertirlo a una distribución normal con media cero y desviación estándar 1. [R se encarga de este paso por nosotros.]{.fragment}
+
+-   Los datos para un PCA no necesariamente tienen que cumplir los supuestos de normalidad y homogeneidad de las varianzas, así tampoco necesitan ser totalmente independientes.
+
+-   Los principales resultados del APC son dos: **gráfico de puntuaciones** y el **gráfico de cargas**
+
+
+:::
+
+
+## ¿Qué NO hace el APC? {.smaller}
+
+::: incremental
+
+El APC no es un método estadístico dirigido a llevar pruebas de hipótesis o estadística inferencial. En más detalle:
+
+1.    **No valores p o pruebas de hipótesis:** no provee valores p, intervalos de confianza o signficancia estadística como podemos esperar del ANOVA. Sirve para explicar varianza y encontrar patrones en los datos.
+
+2.    **No es un modelo predictivo:** no intenta predecir una variable dependiente en función de un set de variables independientes.
+
+3.    **No tiene definición entre variables dependientes y explanatorias:** trata a todas las variables de input por igual.
+
+4.    **No provee interpretabilidad directa sobre las variables de input:** al convertir las variables originales a un nuevo eje coordenado de componentes principales, no ofrece interpretaciones cuantitativas de las variables que forman parte de las combinaciones lineales que dieron lugar a los componentes principales.
+
+:::
+
+## APC en R
+
+
+
 ##
 
 ::: columns
