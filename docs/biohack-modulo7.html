@@ -1202,8 +1202,13 @@ UPM 0.0824 0.8562 0.0000 0.0000       </code></pre>
 </section>
 <section id="diagnósticos-de-la-regresión-múltiple-1" class="slide level2 smaller" data-visibility="uncounted">
 <h2>Diagnósticos de la regresión múltiple</h2>
-
-<img data-src="biohack-modulo7_files/figure-revealjs/unnamed-chunk-33-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"></section>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-error">
+<pre><code>Error: Package `see` required for model diagnostic plots.
+  Please install it by running `install.packages("see")`.</code></pre>
+</div>
+</div>
+</section>
 <section id="diagnósticos-de-la-regresión-múltiple-2" class="slide level2 smaller" data-visibility="uncounted">
 <h2>Diagnósticos de la regresión múltiple</h2>
 <div class="columns v-center-container">
@@ -1223,12 +1228,9 @@ UPM 0.0824 0.8562 0.0000 0.0000       </code></pre>
 <div class="columns v-center-container">
 <div class="column" style="width:40%;">
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="biohack-modulo7_files/figure-revealjs/unnamed-chunk-34-1.png" width="576"></p>
-</figure>
-</div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: Package `see` required to plot collinearity-check.
+  Please install it by running `install.packages("see")`.</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:60%;">
@@ -1246,15 +1248,20 @@ UPM 0.0824 0.8562 0.0000 0.0000       </code></pre>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin)</span>
-<span id="cb36-2"><a></a><span class="fu">check_model</span>(lm3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin)</span>
+<span id="cb38-2"><a></a><span class="fu">check_model</span>(lm3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="transformaciones-1" class="slide level2 smaller scrollable" data-visibility="uncounted">
 <h2>Transformaciones</h2>
-
-<img data-src="biohack-modulo7_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"></section>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-error">
+<pre><code>Error: Package `see` required for model diagnostic plots.
+  Please install it by running `install.packages("see")`.</code></pre>
+</div>
+</div>
+</section>
 <section id="removiendo-outliers" class="slide level2 smaller">
 <h2>Removiendo outliers</h2>
 <div>
@@ -1265,16 +1272,21 @@ UPM 0.0824 0.8562 0.0000 0.0000       </code></pre>
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>rot_berlin_out <span class="ot">&lt;-</span> rot_berlin[<span class="sc">-</span><span class="dv">22</span>, ]</span>
-<span id="cb37-2"><a></a>lm4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
-<span id="cb37-3"><a></a><span class="fu">check_model</span>(lm4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>rot_berlin_out <span class="ot">&lt;-</span> rot_berlin[<span class="sc">-</span><span class="dv">22</span>, ]</span>
+<span id="cb40-2"><a></a>lm4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
+<span id="cb40-3"><a></a><span class="fu">check_model</span>(lm4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="removiendo-outliers-1" class="slide level2 smaller">
 <h2>Removiendo outliers</h2>
-
-<img data-src="biohack-modulo7_files/figure-revealjs/unnamed-chunk-39-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"></section>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-error">
+<pre><code>Error: Package `see` required for model diagnostic plots.
+  Please install it by running `install.packages("see")`.</code></pre>
+</div>
+</div>
+</section>
 <section id="modelo-final" class="slide level2 smaller scrollable">
 <h2>Modelo final</h2>
 <div>
@@ -1284,7 +1296,7 @@ UPM 0.0824 0.8562 0.0000 0.0000       </code></pre>
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">summary</span>(lm4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">summary</span>(lm4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1352,11 +1364,11 @@ F-statistic: 142.9 on 2 and 61 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">library</span>(ggeffects)</span>
-<span id="cb41-2"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-3"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb41-4"><a></a>predicciones <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(lm4)</span>
-<span id="cb41-5"><a></a>predicciones[[<span class="dv">1</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb45-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb45-3"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb45-4"><a></a>predicciones <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(lm4)</span>
+<span id="cb45-5"><a></a>predicciones[[<span class="dv">1</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Predicted values of cases
 
@@ -1376,7 +1388,7 @@ Adjusted for:
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>predicciones[[<span class="dv">2</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>predicciones[[<span class="dv">2</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Predicted values of cases
 
@@ -1400,9 +1412,9 @@ Adjusted for:
 <section id="interpretación-2" class="slide level2 smaller" data-visibility="uncounted">
 <h2>Interpretación</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>p1 <span class="ot">&lt;-</span> predicciones[[<span class="dv">1</span>]]</span>
-<span id="cb45-2"><a></a>p2 <span class="ot">&lt;-</span> predicciones[[<span class="dv">2</span>]]</span>
-<span id="cb45-3"><a></a><span class="fu">plot</span>(p1) <span class="sc">+</span> <span class="fu">plot</span>(p2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>p1 <span class="ot">&lt;-</span> predicciones[[<span class="dv">1</span>]]</span>
+<span id="cb49-2"><a></a>p2 <span class="ot">&lt;-</span> predicciones[[<span class="dv">2</span>]]</span>
+<span id="cb49-3"><a></a><span class="fu">plot</span>(p1) <span class="sc">+</span> <span class="fu">plot</span>(p2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <!-- ## Ejercicio 5.1 {.smaller} -->
@@ -1465,14 +1477,14 @@ Adjusted for:
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>rot_berlin<span class="sc">$</span>cases_comp <span class="ot">&lt;-</span> rot_berlin<span class="sc">$</span>cases <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb46-2"><a></a>rot_berlin_out<span class="sc">$</span>cases_comp <span class="ot">&lt;-</span> rot_berlin_out<span class="sc">$</span>cases <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb46-3"><a></a>lm1<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(cases <span class="sc">~</span> FM <span class="sc">+</span> RSK <span class="sc">+</span> SHK_TAG <span class="sc">+</span> PM <span class="sc">+</span> TMK <span class="sc">+</span> TXK <span class="sc">+</span> TNK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
-<span id="cb46-4"><a></a>lm2<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(cases <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
-<span id="cb46-5"><a></a>lm3<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases_comp) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
-<span id="cb46-6"><a></a>lm4<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases_comp) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
-<span id="cb46-7"><a></a></span>
-<span id="cb46-8"><a></a><span class="fu">compare_performance</span>(lm1<span class="fl">.1</span>, lm2<span class="fl">.1</span>, lm3<span class="fl">.1</span>, lm4<span class="fl">.1</span>, <span class="at">rank =</span> T)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>rot_berlin<span class="sc">$</span>cases_comp <span class="ot">&lt;-</span> rot_berlin<span class="sc">$</span>cases <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb50-2"><a></a>rot_berlin_out<span class="sc">$</span>cases_comp <span class="ot">&lt;-</span> rot_berlin_out<span class="sc">$</span>cases <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb50-3"><a></a>lm1<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(cases <span class="sc">~</span> FM <span class="sc">+</span> RSK <span class="sc">+</span> SHK_TAG <span class="sc">+</span> PM <span class="sc">+</span> TMK <span class="sc">+</span> TXK <span class="sc">+</span> TNK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
+<span id="cb50-4"><a></a>lm2<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(cases <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
+<span id="cb50-5"><a></a>lm3<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases_comp) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
+<span id="cb50-6"><a></a>lm4<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases_comp) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
+<span id="cb50-7"><a></a></span>
+<span id="cb50-8"><a></a><span class="fu">compare_performance</span>(lm1<span class="fl">.1</span>, lm2<span class="fl">.1</span>, lm3<span class="fl">.1</span>, lm4<span class="fl">.1</span>, <span class="at">rank =</span> T)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -1481,34 +1493,38 @@ Adjusted for:
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>rot_berlin<span class="sc">$</span>cases_comp <span class="ot">&lt;-</span> rot_berlin<span class="sc">$</span>cases <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb47-2"><a></a>rot_berlin_out<span class="sc">$</span>cases_comp <span class="ot">&lt;-</span> rot_berlin_out<span class="sc">$</span>cases <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb47-3"><a></a>lm1<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(cases <span class="sc">~</span> FM <span class="sc">+</span> RSK <span class="sc">+</span> SHK_TAG <span class="sc">+</span> PM <span class="sc">+</span> TMK <span class="sc">+</span> TXK <span class="sc">+</span> TNK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
-<span id="cb47-4"><a></a>lm2<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(cases <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
-<span id="cb47-5"><a></a>lm3<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases_comp) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
-<span id="cb47-6"><a></a>lm4<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases_comp) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
-<span id="cb47-7"><a></a></span>
-<span id="cb47-8"><a></a><span class="fu">compare_performance</span>(lm1<span class="fl">.1</span>, lm2<span class="fl">.1</span>, lm3<span class="fl">.1</span>, lm4<span class="fl">.1</span>, <span class="at">rank =</span> T)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>rot_berlin<span class="sc">$</span>cases_comp <span class="ot">&lt;-</span> rot_berlin<span class="sc">$</span>cases <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb51-2"><a></a>rot_berlin_out<span class="sc">$</span>cases_comp <span class="ot">&lt;-</span> rot_berlin_out<span class="sc">$</span>cases <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb51-3"><a></a>lm1<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(cases <span class="sc">~</span> FM <span class="sc">+</span> RSK <span class="sc">+</span> SHK_TAG <span class="sc">+</span> PM <span class="sc">+</span> TMK <span class="sc">+</span> TXK <span class="sc">+</span> TNK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
+<span id="cb51-4"><a></a>lm2<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(cases <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
+<span id="cb51-5"><a></a>lm3<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases_comp) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
+<span id="cb51-6"><a></a>lm4<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(cases_comp) <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
+<span id="cb51-7"><a></a></span>
+<span id="cb51-8"><a></a><span class="fu">compare_performance</span>(lm1<span class="fl">.1</span>, lm2<span class="fl">.1</span>, lm3<span class="fl">.1</span>, lm4<span class="fl">.1</span>, <span class="at">rank =</span> T)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Comparison of Model Performance Indices
 
-Name  | Model |    R2 | R2 (adj.) |   RMSE |  Sigma | AIC weights | AICc weights | BIC weights | Performance-Score
-------------------------------------------------------------------------------------------------------------------
-lm3.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500 |        0.500 |       0.500 |            94.93%
-lm4.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500 |        0.500 |       0.500 |            94.93%
-lm1.1 |    lm | 0.847 |     0.825 | 12.989 | 14.011 |    7.53e-11 |     1.33e-11 |    1.16e-13 |            33.96%
-lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14 |    1.26e-14 |             0.00%</code></pre>
+Name  | Model |    R2 | R2 (adj.) |   RMSE |  Sigma | AIC weights
+-----------------------------------------------------------------
+lm3.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500
+lm4.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500
+lm1.1 |    lm | 0.847 |     0.825 | 12.989 | 14.011 |    7.53e-11
+lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14
+
+Name  | AICc weights | BIC weights | Performance-Score
+------------------------------------------------------
+lm3.1 |        0.500 |       0.500 |            94.93%
+lm4.1 |        0.500 |       0.500 |            94.93%
+lm1.1 |     1.33e-11 |    1.16e-13 |            33.96%
+lm2.1 |     1.26e-14 |    1.26e-14 |             0.00%</code></pre>
 </div>
 </div>
 </div><div class="column fragment" style="width:30%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a><span class="fu">plot</span>(<span class="fu">compare_performance</span>(lm1<span class="fl">.1</span>, lm2<span class="fl">.1</span>, lm3<span class="fl">.1</span>, lm4<span class="fl">.1</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="biohack-modulo7_files/figure-revealjs/unnamed-chunk-47-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
-</figure>
-</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="fu">plot</span>(<span class="fu">compare_performance</span>(lm1<span class="fl">.1</span>, lm2<span class="fl">.1</span>, lm3<span class="fl">.1</span>, lm4<span class="fl">.1</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: Package `see` required for model comparison plots.
+  Please install it by running `install.packages("see")`.</code></pre>
 </div>
 </div>
 </div></div>
@@ -1521,13 +1537,10 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 <li>El mejor modelo de acuerdo al mágico <span class="math inline">\(R^2\)</span></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="fu">check_model</span>(lm1<span class="fl">.1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="biohack-modulo7_files/figure-revealjs/unnamed-chunk-48-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
-</figure>
-</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">check_model</span>(lm1<span class="fl">.1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: Package `see` required for model diagnostic plots.
+  Please install it by running `install.packages("see")`.</code></pre>
 </div>
 </div>
 </div><div class="column fragment" style="width:50%;">
@@ -1535,13 +1548,10 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 <li>Nuestro pobre pero honrado mejor modelo</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="fu">check_model</span>(lm4<span class="fl">.1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="biohack-modulo7_files/figure-revealjs/unnamed-chunk-49-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
-</figure>
-</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a><span class="fu">check_model</span>(lm4<span class="fl">.1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: Package `see` required for model diagnostic plots.
+  Please install it by running `install.packages("see")`.</code></pre>
 </div>
 </div>
 </div></div>
@@ -1578,15 +1588,20 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>glm1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(cases <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
-<span id="cb52-2"><a></a><span class="fu">check_model</span>(glm1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a>glm1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(cases <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out, <span class="at">family =</span> <span class="st">"poisson"</span>)</span>
+<span id="cb59-2"><a></a><span class="fu">check_model</span>(glm1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="regresión-de-poisson-en-r-1" class="slide level2">
 <h2>Regresión de Poisson en R</h2>
-
-<img data-src="biohack-modulo7_files/figure-revealjs/unnamed-chunk-51-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"></section>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-error">
+<pre><code>Error: Package `see` required for model diagnostic plots.
+  Please install it by running `install.packages("see")`.</code></pre>
+</div>
+</div>
+</section>
 <section id="regresión-binomial-negativa" class="slide level2 smaller">
 <h2>Regresión binomial negativa</h2>
 <div>
@@ -1599,16 +1614,21 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="fu">library</span>(MASS)</span>
-<span id="cb53-2"><a></a>glm2 <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(cases <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
-<span id="cb53-3"><a></a><span class="fu">check_model</span>(glm2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a><span class="fu">library</span>(MASS)</span>
+<span id="cb61-2"><a></a>glm2 <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(cases <span class="sc">~</span> TXK <span class="sc">+</span> UPM, <span class="at">data =</span> rot_berlin_out)</span>
+<span id="cb61-3"><a></a><span class="fu">check_model</span>(glm2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="regresión-binomial-negativa-1" class="slide level2 smaller">
 <h2>Regresión binomial negativa</h2>
-
-<img data-src="biohack-modulo7_files/figure-revealjs/unnamed-chunk-53-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"></section>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-error">
+<pre><code>Error: Package `see` required for model diagnostic plots.
+  Please install it by running `install.packages("see")`.</code></pre>
+</div>
+</div>
+</section>
 <section id="comparación-de-modelos" class="slide level2">
 <h2>Comparación de modelos</h2>
 <div>
@@ -1618,10 +1638,10 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="fu">library</span>(flextable)</span>
-<span id="cb54-2"><a></a><span class="fu">colformat_double</span>(<span class="fu">flextable</span>(<span class="fu">compare_performance</span>(lm1<span class="fl">.1</span>, lm2<span class="fl">.1</span>, lm4<span class="fl">.1</span>, glm1, glm2)), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a><span class="fu">library</span>(flextable)</span>
+<span id="cb63-2"><a></a><span class="fu">colformat_double</span>(<span class="fu">flextable</span>(<span class="fu">compare_performance</span>(lm1<span class="fl">.1</span>, lm2<span class="fl">.1</span>, lm4<span class="fl">.1</span>, glm1, glm2)), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-84582d68{}.cl-844c3f3a{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-84502ff0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-84503004{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-84505796{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-845057a0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-845057aa{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-845057ab{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-845057b4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-845057b5{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-84582d68"><thead><tr style="overflow-wrap:break-word;"><th class="cl-84505796"><p class="cl-84502ff0"><span class="cl-844c3f3a">Name</span></p></th><th class="cl-84505796"><p class="cl-84502ff0"><span class="cl-844c3f3a">Model</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">AIC</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">AIC_wt</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">AICc</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">AICc_wt</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">BIC</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">BIC_wt</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">RMSE</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">Sigma</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">R2_Nagelkerke</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">Score_log</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">Score_spherical</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">R2</span></p></th><th class="cl-845057a0"><p class="cl-84503004"><span class="cl-844c3f3a">R2_adjusted</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-845057aa"><p class="cl-84502ff0"><span class="cl-844c3f3a">lm1.1</span></p></td><td class="cl-845057aa"><p class="cl-84502ff0"><span class="cl-844c3f3a">lm</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">529.825</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.000</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">533.976</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.000</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">551.414</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.000</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">12.989</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">14.011</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.847</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.825</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-845057aa"><p class="cl-84502ff0"><span class="cl-844c3f3a">lm2.1</span></p></td><td class="cl-845057aa"><p class="cl-84502ff0"><span class="cl-844c3f3a">lm</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">547.212</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.000</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">547.890</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.000</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">555.848</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.000</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">16.341</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">16.738</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.759</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.751</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-845057aa"><p class="cl-84502ff0"><span class="cl-844c3f3a">lm4.1</span></p></td><td class="cl-845057aa"><p class="cl-84502ff0"><span class="cl-844c3f3a">lm</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">484.591</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.112</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">485.269</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.112</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">493.227</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.112</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.411</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.421</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.824</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.818</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-845057aa"><p class="cl-84502ff0"><span class="cl-844c3f3a">glm1</span></p></td><td class="cl-845057aa"><p class="cl-84502ff0"><span class="cl-844c3f3a">glm</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">681.463</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.000</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">681.863</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.000</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">687.939</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.000</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">17.426</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">1.000</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">1.000</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">-5.277</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a">0.090</span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td><td class="cl-845057ab"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-845057b4"><p class="cl-84502ff0"><span class="cl-844c3f3a">glm2</span></p></td><td class="cl-845057b4"><p class="cl-84502ff0"><span class="cl-844c3f3a">negbin</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a">480.440</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a">0.888</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a">481.118</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a">0.888</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a">489.076</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a">0.888</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a">20.876</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a">1.000</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a">0.995</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a">-3.845</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a">0.101</span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td><td class="cl-845057b5"><p class="cl-84503004"><span class="cl-844c3f3a"></span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-60e2e90a{}.cl-60d9f994{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-60dd9c0c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-60dd9c16{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-60ddbd72{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-60ddbd7c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-60ddbd7d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-60ddbd86{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-60ddbd87{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-60ddbd88{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-60e2e90a"><thead><tr style="overflow-wrap:break-word;"><th class="cl-60ddbd72"><p class="cl-60dd9c0c"><span class="cl-60d9f994">Name</span></p></th><th class="cl-60ddbd72"><p class="cl-60dd9c0c"><span class="cl-60d9f994">Model</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">AIC</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">AIC_wt</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">AICc</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">AICc_wt</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">BIC</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">BIC_wt</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">RMSE</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">Sigma</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">R2_Nagelkerke</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">Score_log</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">Score_spherical</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">R2</span></p></th><th class="cl-60ddbd7c"><p class="cl-60dd9c16"><span class="cl-60d9f994">R2_adjusted</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-60ddbd7d"><p class="cl-60dd9c0c"><span class="cl-60d9f994">lm1.1</span></p></td><td class="cl-60ddbd7d"><p class="cl-60dd9c0c"><span class="cl-60d9f994">lm</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">529.825</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.000</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">533.976</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.000</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">551.414</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.000</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">12.989</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">14.011</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.847</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.825</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-60ddbd7d"><p class="cl-60dd9c0c"><span class="cl-60d9f994">lm2.1</span></p></td><td class="cl-60ddbd7d"><p class="cl-60dd9c0c"><span class="cl-60d9f994">lm</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">547.212</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.000</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">547.890</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.000</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">555.848</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.000</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">16.341</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">16.738</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.759</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.751</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-60ddbd7d"><p class="cl-60dd9c0c"><span class="cl-60d9f994">lm4.1</span></p></td><td class="cl-60ddbd7d"><p class="cl-60dd9c0c"><span class="cl-60d9f994">lm</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">484.591</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.112</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">485.269</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.112</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">493.227</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.112</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.411</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.421</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.824</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.818</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-60ddbd7d"><p class="cl-60dd9c0c"><span class="cl-60d9f994">glm1</span></p></td><td class="cl-60ddbd7d"><p class="cl-60dd9c0c"><span class="cl-60d9f994">glm</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">681.463</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.000</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">681.863</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.000</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">687.939</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.000</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">17.426</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">1.000</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">1.000</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">-5.277</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.090</span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td><td class="cl-60ddbd86"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-60ddbd87"><p class="cl-60dd9c0c"><span class="cl-60d9f994">glm2</span></p></td><td class="cl-60ddbd87"><p class="cl-60dd9c0c"><span class="cl-60d9f994">negbin</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994">480.440</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.888</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994">481.118</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.888</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994">489.076</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.888</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994">20.876</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994">1.000</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.995</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994">-3.845</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994">0.101</span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td><td class="cl-60ddbd88"><p class="cl-60dd9c16"><span class="cl-60d9f994"></span></p></td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -1635,9 +1655,9 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">colformat_double</span>(<span class="fu">flextable</span>(<span class="fu">compare_performance</span>(lm1<span class="fl">.1</span>, lm2<span class="fl">.1</span>, lm4<span class="fl">.1</span>, glm1, glm2, <span class="at">rank =</span> T)), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a><span class="fu">colformat_double</span>(<span class="fu">flextable</span>(<span class="fu">compare_performance</span>(lm1<span class="fl">.1</span>, lm2<span class="fl">.1</span>, lm4<span class="fl">.1</span>, glm1, glm2, <span class="at">rank =</span> T)), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-84e193a0{}.cl-84d82f04{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-84dba332{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-84dba346{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-84dbbf70{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-84dbbf7a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-84dbbf7b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-84dbbf7c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-84dbbf84{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-84dbbf85{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-84e193a0"><thead><tr style="overflow-wrap:break-word;"><th class="cl-84dbbf70"><p class="cl-84dba332"><span class="cl-84d82f04">Name</span></p></th><th class="cl-84dbbf70"><p class="cl-84dba332"><span class="cl-84d82f04">Model</span></p></th><th class="cl-84dbbf7a"><p class="cl-84dba346"><span class="cl-84d82f04">RMSE</span></p></th><th class="cl-84dbbf7a"><p class="cl-84dba346"><span class="cl-84d82f04">Sigma</span></p></th><th class="cl-84dbbf7a"><p class="cl-84dba346"><span class="cl-84d82f04">R2_Nagelkerke</span></p></th><th class="cl-84dbbf7a"><p class="cl-84dba346"><span class="cl-84d82f04">Score_log</span></p></th><th class="cl-84dbbf7a"><p class="cl-84dba346"><span class="cl-84d82f04">Score_spherical</span></p></th><th class="cl-84dbbf7a"><p class="cl-84dba346"><span class="cl-84d82f04">R2</span></p></th><th class="cl-84dbbf7a"><p class="cl-84dba346"><span class="cl-84d82f04">R2_adjusted</span></p></th><th class="cl-84dbbf7a"><p class="cl-84dba346"><span class="cl-84d82f04">AIC_wt</span></p></th><th class="cl-84dbbf7a"><p class="cl-84dba346"><span class="cl-84d82f04">AICc_wt</span></p></th><th class="cl-84dbbf7a"><p class="cl-84dba346"><span class="cl-84d82f04">BIC_wt</span></p></th><th class="cl-84dbbf7a"><p class="cl-84dba346"><span class="cl-84d82f04">Performance_Score</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-84dbbf7b"><p class="cl-84dba332"><span class="cl-84d82f04">glm2</span></p></td><td class="cl-84dbbf7b"><p class="cl-84dba332"><span class="cl-84d82f04">negbin</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">20.876</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">1.000</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.995</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">-3.845</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.101</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.888</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.888</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.888</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.793</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-84dbbf7b"><p class="cl-84dba332"><span class="cl-84d82f04">lm4.1</span></p></td><td class="cl-84dbbf7b"><p class="cl-84dba332"><span class="cl-84d82f04">lm</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.411</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.421</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.824</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.818</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.112</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.112</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.112</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.475</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-84dbbf7b"><p class="cl-84dba332"><span class="cl-84d82f04">glm1</span></p></td><td class="cl-84dbbf7b"><p class="cl-84dba332"><span class="cl-84d82f04">glm</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">17.426</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">1.000</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">1.000</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">-5.277</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.090</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.000</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.000</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.000</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.227</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-84dbbf7b"><p class="cl-84dba332"><span class="cl-84d82f04">lm1.1</span></p></td><td class="cl-84dbbf7b"><p class="cl-84dba332"><span class="cl-84d82f04">lm</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">12.989</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">14.011</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.847</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.825</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.000</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.000</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.000</span></p></td><td class="cl-84dbbf7c"><p class="cl-84dba346"><span class="cl-84d82f04">0.111</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-84dbbf84"><p class="cl-84dba332"><span class="cl-84d82f04">lm2.1</span></p></td><td class="cl-84dbbf84"><p class="cl-84dba332"><span class="cl-84d82f04">lm</span></p></td><td class="cl-84dbbf85"><p class="cl-84dba346"><span class="cl-84d82f04">16.341</span></p></td><td class="cl-84dbbf85"><p class="cl-84dba346"><span class="cl-84d82f04">16.738</span></p></td><td class="cl-84dbbf85"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf85"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf85"><p class="cl-84dba346"><span class="cl-84d82f04"></span></p></td><td class="cl-84dbbf85"><p class="cl-84dba346"><span class="cl-84d82f04">0.759</span></p></td><td class="cl-84dbbf85"><p class="cl-84dba346"><span class="cl-84d82f04">0.751</span></p></td><td class="cl-84dbbf85"><p class="cl-84dba346"><span class="cl-84d82f04">0.000</span></p></td><td class="cl-84dbbf85"><p class="cl-84dba346"><span class="cl-84d82f04">0.000</span></p></td><td class="cl-84dbbf85"><p class="cl-84dba346"><span class="cl-84d82f04">0.000</span></p></td><td class="cl-84dbbf85"><p class="cl-84dba346"><span class="cl-84d82f04">0.044</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-616ac6a4{}.cl-6162a898{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-6165d608{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-6165d612{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-6165f5a2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6165f5ac{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6165f5ad{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6165f5b6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6165f5b7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6165f5b8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-616ac6a4"><thead><tr style="overflow-wrap:break-word;"><th class="cl-6165f5a2"><p class="cl-6165d608"><span class="cl-6162a898">Name</span></p></th><th class="cl-6165f5a2"><p class="cl-6165d608"><span class="cl-6162a898">Model</span></p></th><th class="cl-6165f5ac"><p class="cl-6165d612"><span class="cl-6162a898">RMSE</span></p></th><th class="cl-6165f5ac"><p class="cl-6165d612"><span class="cl-6162a898">Sigma</span></p></th><th class="cl-6165f5ac"><p class="cl-6165d612"><span class="cl-6162a898">R2_Nagelkerke</span></p></th><th class="cl-6165f5ac"><p class="cl-6165d612"><span class="cl-6162a898">Score_log</span></p></th><th class="cl-6165f5ac"><p class="cl-6165d612"><span class="cl-6162a898">Score_spherical</span></p></th><th class="cl-6165f5ac"><p class="cl-6165d612"><span class="cl-6162a898">R2</span></p></th><th class="cl-6165f5ac"><p class="cl-6165d612"><span class="cl-6162a898">R2_adjusted</span></p></th><th class="cl-6165f5ac"><p class="cl-6165d612"><span class="cl-6162a898">AIC_wt</span></p></th><th class="cl-6165f5ac"><p class="cl-6165d612"><span class="cl-6162a898">AICc_wt</span></p></th><th class="cl-6165f5ac"><p class="cl-6165d612"><span class="cl-6162a898">BIC_wt</span></p></th><th class="cl-6165f5ac"><p class="cl-6165d612"><span class="cl-6162a898">Performance_Score</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-6165f5ad"><p class="cl-6165d608"><span class="cl-6162a898">glm2</span></p></td><td class="cl-6165f5ad"><p class="cl-6165d608"><span class="cl-6162a898">negbin</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">20.876</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">1.000</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.995</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">-3.845</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.101</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.888</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.888</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.888</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.793</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6165f5ad"><p class="cl-6165d608"><span class="cl-6162a898">lm4.1</span></p></td><td class="cl-6165f5ad"><p class="cl-6165d608"><span class="cl-6162a898">lm</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.411</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.421</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.824</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.818</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.112</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.112</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.112</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.475</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6165f5ad"><p class="cl-6165d608"><span class="cl-6162a898">glm1</span></p></td><td class="cl-6165f5ad"><p class="cl-6165d608"><span class="cl-6162a898">glm</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">17.426</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">1.000</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">1.000</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">-5.277</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.090</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.000</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.000</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.000</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.227</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6165f5ad"><p class="cl-6165d608"><span class="cl-6162a898">lm1.1</span></p></td><td class="cl-6165f5ad"><p class="cl-6165d608"><span class="cl-6162a898">lm</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">12.989</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">14.011</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.847</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.825</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.000</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.000</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.000</span></p></td><td class="cl-6165f5b6"><p class="cl-6165d612"><span class="cl-6162a898">0.111</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6165f5b7"><p class="cl-6165d608"><span class="cl-6162a898">lm2.1</span></p></td><td class="cl-6165f5b7"><p class="cl-6165d608"><span class="cl-6162a898">lm</span></p></td><td class="cl-6165f5b8"><p class="cl-6165d612"><span class="cl-6162a898">16.341</span></p></td><td class="cl-6165f5b8"><p class="cl-6165d612"><span class="cl-6162a898">16.738</span></p></td><td class="cl-6165f5b8"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b8"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b8"><p class="cl-6165d612"><span class="cl-6162a898"></span></p></td><td class="cl-6165f5b8"><p class="cl-6165d612"><span class="cl-6162a898">0.759</span></p></td><td class="cl-6165f5b8"><p class="cl-6165d612"><span class="cl-6162a898">0.751</span></p></td><td class="cl-6165f5b8"><p class="cl-6165d612"><span class="cl-6162a898">0.000</span></p></td><td class="cl-6165f5b8"><p class="cl-6165d612"><span class="cl-6162a898">0.000</span></p></td><td class="cl-6165f5b8"><p class="cl-6165d612"><span class="cl-6162a898">0.000</span></p></td><td class="cl-6165f5b8"><p class="cl-6165d612"><span class="cl-6162a898">0.044</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 </div>
@@ -1659,7 +1679,7 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 
 </div><div class="column" style="width:60%;">
 <div class="title" data-id="title">
-<p><a href="https://mmorenozam.github.io/biohack-website/ejercicios_m7.html#ejercicios-7.1" target="_blank">Ejercicios 7.1</a></p>
+<p><a href="https://mmorenozam.github.io/biohack_progR/ejercicios_m7.html#ejercicios-7.1" target="_blank">Ejercicios 7.1</a></p>
 </div>
                     <div id="Timer1"></div>
                     <script>
@@ -1682,8 +1702,8 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 <ul>
 <li class="fragment"><p>Llamado también PCA (por sus siglas en Inglés), es un método <strong>estadístico</strong> multivariado que tiene por objetivo el reducir las dimensiones de un conjunto de datos.</p></li>
 <li class="fragment"><p>Mediante esta reducción, se pueden simplificar y visualizar datos altamente complejos. Esto ayuda a la interpretación e identificación de procesos que de otra forma, no sería fácil el determinar.</p></li>
-<li class="fragment"><p>Es por esta razón que el PCA (ó APC) es popular en biología al ser este un campo donde comúnmente se generan datos que pueden contener cientos de filas y columnas.</p></li>
-<li class="fragment"><p>Las preguntas que se pueden contestar con APC incluyen:</p>
+<li class="fragment"><p>Es por esta razón que el PCA (ó ACP) es popular en biología al ser este un campo donde comúnmente se generan datos que pueden contener cientos de filas y columnas.</p></li>
+<li class="fragment"><p>Las preguntas que se pueden contestar con ACP incluyen:</p>
 <ul>
 <li class="fragment"><p>¿Qué muestras son más o menos similares entre sí?</p></li>
 <li class="fragment"><p>¿Qué variables independientes se comportan de manera similar?</p></li>
@@ -1725,22 +1745,22 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 </ul>
 </div>
 </section>
-<section id="consideraciones-antes-de-implementar-apc" class="slide level2 smaller">
-<h2>Consideraciones antes de implementar APC</h2>
+<section id="consideraciones-antes-de-implementar-acp" class="slide level2 smaller">
+<h2>Consideraciones antes de implementar ACP</h2>
 <div>
 <ul>
-<li class="fragment"><p>El input de un APC pueden ser dos o más variables continuas. El APC clásico no puede lidiar con variables categóricas.</p></li>
+<li class="fragment"><p>El input de un ACP pueden ser dos o más variables continuas. El ACP clásico no puede lidiar con variables categóricas.</p></li>
 <li class="fragment"><p>Debido a las posibles diferencias en los órdenes de magnitud y varianzas entre las variables continuas objeto de estudio, es aconsejable el estandarizar los valores.</p></li>
 <li class="fragment"><p>Estandarizar un valor es convertirlo a una distribución normal con media cero y desviación estándar 1. <span class="fragment">R se encarga de este paso por nosotros.</span></p></li>
 <li class="fragment"><p>Los datos para un PCA no necesariamente tienen que cumplir los supuestos de normalidad y homogeneidad de las varianzas, así tampoco necesitan ser totalmente independientes.</p></li>
-<li class="fragment"><p>Los principales resultados del APC son dos: <strong>gráfico de puntuaciones</strong> y el <strong>gráfico de cargas</strong></p></li>
+<li class="fragment"><p>Los principales resultados del ACP son dos: <strong>gráfico de puntuaciones</strong> y el <strong>gráfico de cargas</strong></p></li>
 </ul>
 </div>
 </section>
-<section id="qué-no-hace-el-apc" class="slide level2 smaller">
-<h2>¿Qué NO hace el APC?</h2>
+<section id="qué-no-hace-el-acp" class="slide level2 smaller">
+<h2>¿Qué NO hace el ACP?</h2>
 <div>
-<p>El APC no es un método estadístico dirigido a llevar pruebas de hipótesis o estadística inferencial. En más detalle:</p>
+<p>El ACP no es un método estadístico dirigido a llevar pruebas de hipótesis o estadística inferencial. En más detalle:</p>
 <ol type="1">
 <li class="fragment"><p><strong>No valores p o pruebas de hipótesis:</strong> no provee valores p, intervalos de confianza o signficancia estadística como podemos esperar del ANOVA. Sirve para explicar varianza y encontrar patrones en los datos.</p></li>
 <li class="fragment"><p><strong>No es un modelo predictivo:</strong> no intenta predecir una variable dependiente en función de un set de variables independientes.</p></li>
@@ -1749,15 +1769,15 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 </ol>
 </div>
 </section>
-<section id="apc-en-r" class="slide level2">
-<h2>APC en R</h2>
+<section id="acp-en-r" class="slide level2">
+<h2>ACP en R</h2>
 <p>Usaremos una tabla de datos <code>overdose.csv</code> que contiene información del número de muertes por sobredosis de drogas sintéticas, heroína, metadona y causas naturales en 33 estados de los Estados Unidos.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>git_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/mmorenozam/biohack-modulo7/refs/heads/main/overdose.csv"</span></span>
-<span id="cb56-2"><a></a></span>
-<span id="cb56-3"><a></a>overdose <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(git_url)</span>
-<span id="cb56-4"><a></a></span>
-<span id="cb56-5"><a></a><span class="fu">head</span>(overdose)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a></a>git_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/mmorenozam/biohack-modulo7/refs/heads/main/overdose.csv"</span></span>
+<span id="cb65-2"><a></a></span>
+<span id="cb65-3"><a></a>overdose <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(git_url)</span>
+<span id="cb65-4"><a></a></span>
+<span id="cb65-5"><a></a><span class="fu">head</span>(overdose)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    State year Heroin Methadone Natural Synthetic abb region
 1 Arizona 2010     90       106     327        68  AZ   West
@@ -1769,23 +1789,23 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 </div>
 </div>
 </section>
-<section id="apc-en-r-1" class="slide level2 smaller" data-visibility="uncounted">
-<h2>APC en R</h2>
+<section id="acp-en-r-1" class="slide level2 smaller" data-visibility="uncounted">
+<h2>ACP en R</h2>
 <p>Nos ayudaremos de la librería <code>{ggbiplot}</code> y la función R de base <code>prcomp</code>.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb58-2"><a></a><span class="fu">library</span>(ggbiplot)</span>
-<span id="cb58-3"><a></a></span>
-<span id="cb58-4"><a></a>overdose.pc <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(overdose[<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)], <span class="at">scale.=</span>T)</span>
-<span id="cb58-5"><a></a></span>
-<span id="cb58-6"><a></a><span class="fu">ggbiplot</span>(overdose.pc, </span>
-<span id="cb58-7"><a></a>         <span class="at">groups =</span> overdose<span class="sc">$</span>region,</span>
-<span id="cb58-8"><a></a>         <span class="at">labels =</span> overdose<span class="sc">$</span>abb,</span>
-<span id="cb58-9"><a></a>         <span class="at">ellipse =</span> T) <span class="sc">+</span> </span>
-<span id="cb58-10"><a></a>  <span class="fu">coord_cartesian</span>() <span class="sc">+</span></span>
-<span id="cb58-11"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb67-2"><a></a><span class="fu">library</span>(ggbiplot)</span>
+<span id="cb67-3"><a></a></span>
+<span id="cb67-4"><a></a>overdose.pc <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(overdose[<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)], <span class="at">scale.=</span>T)</span>
+<span id="cb67-5"><a></a></span>
+<span id="cb67-6"><a></a><span class="fu">ggbiplot</span>(overdose.pc, </span>
+<span id="cb67-7"><a></a>         <span class="at">groups =</span> overdose<span class="sc">$</span>region,</span>
+<span id="cb67-8"><a></a>         <span class="at">labels =</span> overdose<span class="sc">$</span>abb,</span>
+<span id="cb67-9"><a></a>         <span class="at">ellipse =</span> T) <span class="sc">+</span> </span>
+<span id="cb67-10"><a></a>  <span class="fu">coord_cartesian</span>() <span class="sc">+</span></span>
+<span id="cb67-11"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column fragment" style="width:&quot;50%;">
 <div class="cell" data-layout-align="center">
@@ -1799,8 +1819,8 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 </div>
 </div></div>
 </section>
-<section id="apc-en-r-2" class="slide level2 smaller scrollable" data-visibility="uncounted">
-<h2>APC en R</h2>
+<section id="acp-en-r-2" class="slide level2 smaller scrollable" data-visibility="uncounted">
+<h2>ACP en R</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
@@ -1829,7 +1849,7 @@ lm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14
 
 </div><div class="column" style="width:60%;">
 <div class="title" data-id="title">
-<p><a href="https://mmorenozam.github.io/biohack-website/ejercicios_m7.html#ejercicios-7.2" target="_blank">Ejercicios 7.2</a></p>
+<p><a href="https://mmorenozam.github.io/biohack_progR/ejercicios_m7.html#ejercicios-7.2" target="_blank">Ejercicios 7.2</a></p>
 </div>
                     <div id="Timer2"></div>
                     <script>

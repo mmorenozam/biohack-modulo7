@@ -207,7 +207,7 @@
     "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-1",
     "title": "biohack-modulo7",
     "section": "Diagnósticos de la regresión múltiple",
-    "text": "Diagnósticos de la regresión múltiple"
+    "text": "Diagnósticos de la regresión múltiple\n\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
   },
   {
     "objectID": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-2",
@@ -221,7 +221,7 @@
     "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-3",
     "title": "biohack-modulo7",
     "section": "Diagnósticos de la regresión múltiple",
-    "text": "Diagnósticos de la regresión múltiple\n\n\n\n\n\n\n\n\n\n\n\n\nChequeo de la colinearidad\nAquí vemos distribuidas en el eje X cada una de las variables que estamos usando como predictores mientras que en el eje Y tenemos el factor de inflación de la varianza (VIF) que cada una de estas contribuye al modelo. Nos da una idea de que variables podríamos eliminar basados en mantener únicamente variables independientes entre sí como predictores."
+    "text": "Diagnósticos de la regresión múltiple\n\n\n\n\nError: Package `see` required to plot collinearity-check.\n  Please install it by running `install.packages(\"see\")`.\n\n\n\nChequeo de la colinearidad\nAquí vemos distribuidas en el eje X cada una de las variables que estamos usando como predictores mientras que en el eje Y tenemos el factor de inflación de la varianza (VIF) que cada una de estas contribuye al modelo. Nos da una idea de que variables podríamos eliminar basados en mantener únicamente variables independientes entre sí como predictores."
   },
   {
     "objectID": "biohack-modulo7.html#transformaciones",
@@ -235,7 +235,7 @@
     "href": "biohack-modulo7.html#transformaciones-1",
     "title": "biohack-modulo7",
     "section": "Transformaciones",
-    "text": "Transformaciones"
+    "text": "Transformaciones\n\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
   },
   {
     "objectID": "biohack-modulo7.html#removiendo-outliers",
@@ -249,7 +249,7 @@
     "href": "biohack-modulo7.html#removiendo-outliers-1",
     "title": "biohack-modulo7",
     "section": "Removiendo outliers",
-    "text": "Removiendo outliers"
+    "text": "Removiendo outliers\n\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
   },
   {
     "objectID": "biohack-modulo7.html#modelo-final",
@@ -312,14 +312,14 @@
     "href": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo-1",
     "title": "biohack-modulo7",
     "section": "El mágico \\(R^2\\) en nuestro ejemplo",
-    "text": "El mágico \\(R^2\\) en nuestro ejemplo\n\n\n\nrot_berlin$cases_comp &lt;- rot_berlin$cases + 1\nrot_berlin_out$cases_comp &lt;- rot_berlin_out$cases + 1\nlm1.1 &lt;- lm(cases ~ FM + RSK + SHK_TAG + PM + TMK + TXK + TNK + UPM, data = rot_berlin_out)\nlm2.1 &lt;- lm(cases ~ TXK + UPM, data = rot_berlin_out)\nlm3.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\nlm4.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\n\ncompare_performance(lm1.1, lm2.1, lm3.1, lm4.1, rank = T)\n\n# Comparison of Model Performance Indices\n\nName  | Model |    R2 | R2 (adj.) |   RMSE |  Sigma | AIC weights | AICc weights | BIC weights | Performance-Score\n------------------------------------------------------------------------------------------------------------------\nlm3.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500 |        0.500 |       0.500 |            94.93%\nlm4.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500 |        0.500 |       0.500 |            94.93%\nlm1.1 |    lm | 0.847 |     0.825 | 12.989 | 14.011 |    7.53e-11 |     1.33e-11 |    1.16e-13 |            33.96%\nlm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14 |     1.26e-14 |    1.26e-14 |             0.00%\n\n\n\n\nplot(compare_performance(lm1.1, lm2.1, lm3.1, lm4.1))"
+    "text": "El mágico \\(R^2\\) en nuestro ejemplo\n\n\n\nrot_berlin$cases_comp &lt;- rot_berlin$cases + 1\nrot_berlin_out$cases_comp &lt;- rot_berlin_out$cases + 1\nlm1.1 &lt;- lm(cases ~ FM + RSK + SHK_TAG + PM + TMK + TXK + TNK + UPM, data = rot_berlin_out)\nlm2.1 &lt;- lm(cases ~ TXK + UPM, data = rot_berlin_out)\nlm3.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\nlm4.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\n\ncompare_performance(lm1.1, lm2.1, lm3.1, lm4.1, rank = T)\n\n# Comparison of Model Performance Indices\n\nName  | Model |    R2 | R2 (adj.) |   RMSE |  Sigma | AIC weights\n-----------------------------------------------------------------\nlm3.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500\nlm4.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500\nlm1.1 |    lm | 0.847 |     0.825 | 12.989 | 14.011 |    7.53e-11\nlm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14\n\nName  | AICc weights | BIC weights | Performance-Score\n------------------------------------------------------\nlm3.1 |        0.500 |       0.500 |            94.93%\nlm4.1 |        0.500 |       0.500 |            94.93%\nlm1.1 |     1.33e-11 |    1.16e-13 |            33.96%\nlm2.1 |     1.26e-14 |    1.26e-14 |             0.00%\n\n\n\n\nplot(compare_performance(lm1.1, lm2.1, lm3.1, lm4.1))\n\nError: Package `see` required for model comparison plots.\n  Please install it by running `install.packages(\"see\")`."
   },
   {
     "objectID": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo-2",
     "href": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo-2",
     "title": "biohack-modulo7",
     "section": "El mágico \\(R^2\\) en nuestro ejemplo",
-    "text": "El mágico \\(R^2\\) en nuestro ejemplo\n\n\n\nEl mejor modelo de acuerdo al mágico \\(R^2\\)\n\n\ncheck_model(lm1.1)\n\n\n\n\n\n\n\n\n\n\nNuestro pobre pero honrado mejor modelo\n\n\ncheck_model(lm4.1)"
+    "text": "El mágico \\(R^2\\) en nuestro ejemplo\n\n\n\nEl mejor modelo de acuerdo al mágico \\(R^2\\)\n\n\ncheck_model(lm1.1)\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`.\n\n\n\n\nNuestro pobre pero honrado mejor modelo\n\n\ncheck_model(lm4.1)\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
   },
   {
     "objectID": "biohack-modulo7.html#qué-son-los-modelos-lineales-generalizados",
@@ -340,7 +340,7 @@
     "href": "biohack-modulo7.html#regresión-de-poisson-en-r-1",
     "title": "biohack-modulo7",
     "section": "Regresión de Poisson en R",
-    "text": "Regresión de Poisson en R"
+    "text": "Regresión de Poisson en R\n\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
   },
   {
     "objectID": "biohack-modulo7.html#regresión-binomial-negativa",
@@ -354,7 +354,7 @@
     "href": "biohack-modulo7.html#regresión-binomial-negativa-1",
     "title": "biohack-modulo7",
     "section": "Regresión binomial negativa",
-    "text": "Regresión binomial negativa"
+    "text": "Regresión binomial negativa\n\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
   },
   {
     "objectID": "biohack-modulo7.html#comparación-de-modelos",
@@ -389,7 +389,7 @@
     "href": "biohack-modulo7.html#introducción",
     "title": "biohack-modulo7",
     "section": "Introducción",
-    "text": "Introducción\n\n\nLlamado también PCA (por sus siglas en Inglés), es un método estadístico multivariado que tiene por objetivo el reducir las dimensiones de un conjunto de datos.\nMediante esta reducción, se pueden simplificar y visualizar datos altamente complejos. Esto ayuda a la interpretación e identificación de procesos que de otra forma, no sería fácil el determinar.\nEs por esta razón que el PCA (ó APC) es popular en biología al ser este un campo donde comúnmente se generan datos que pueden contener cientos de filas y columnas.\nLas preguntas que se pueden contestar con APC incluyen:\n\n¿Qué muestras son más o menos similares entre sí?\n¿Qué variables independientes se comportan de manera similar?"
+    "text": "Introducción\n\n\nLlamado también PCA (por sus siglas en Inglés), es un método estadístico multivariado que tiene por objetivo el reducir las dimensiones de un conjunto de datos.\nMediante esta reducción, se pueden simplificar y visualizar datos altamente complejos. Esto ayuda a la interpretación e identificación de procesos que de otra forma, no sería fácil el determinar.\nEs por esta razón que el PCA (ó ACP) es popular en biología al ser este un campo donde comúnmente se generan datos que pueden contener cientos de filas y columnas.\nLas preguntas que se pueden contestar con ACP incluyen:\n\n¿Qué muestras son más o menos similares entre sí?\n¿Qué variables independientes se comportan de manera similar?"
   },
   {
     "objectID": "biohack-modulo7.html#introducción-1",
@@ -406,39 +406,39 @@
     "text": "Introducción\n\n\n\nLas contribuciones de cada variable en el eje del CP están indicadas por una flecha (carga).\nEstas cargas reflejan la correlación entre la variable y el CP.\nMientras más larga es la carga, mayor la correlación. Indicando que la variable es más importante en explicar/controlar la diferencia entre las muestras a lo largo del CP.\nEn el gráfico, \\(CO_3\\) y pH son por tanto las variables más importantes del CP1, y \\(Ca^{2+}\\) y Salinity del CP2"
   },
   {
-    "objectID": "biohack-modulo7.html#consideraciones-antes-de-implementar-apc",
-    "href": "biohack-modulo7.html#consideraciones-antes-de-implementar-apc",
+    "objectID": "biohack-modulo7.html#consideraciones-antes-de-implementar-acp",
+    "href": "biohack-modulo7.html#consideraciones-antes-de-implementar-acp",
     "title": "biohack-modulo7",
-    "section": "Consideraciones antes de implementar APC",
-    "text": "Consideraciones antes de implementar APC\n\n\nEl input de un APC pueden ser dos o más variables continuas. El APC clásico no puede lidiar con variables categóricas.\nDebido a las posibles diferencias en los órdenes de magnitud y varianzas entre las variables continuas objeto de estudio, es aconsejable el estandarizar los valores.\nEstandarizar un valor es convertirlo a una distribución normal con media cero y desviación estándar 1. R se encarga de este paso por nosotros.\nLos datos para un PCA no necesariamente tienen que cumplir los supuestos de normalidad y homogeneidad de las varianzas, así tampoco necesitan ser totalmente independientes.\nLos principales resultados del APC son dos: gráfico de puntuaciones y el gráfico de cargas"
+    "section": "Consideraciones antes de implementar ACP",
+    "text": "Consideraciones antes de implementar ACP\n\n\nEl input de un ACP pueden ser dos o más variables continuas. El ACP clásico no puede lidiar con variables categóricas.\nDebido a las posibles diferencias en los órdenes de magnitud y varianzas entre las variables continuas objeto de estudio, es aconsejable el estandarizar los valores.\nEstandarizar un valor es convertirlo a una distribución normal con media cero y desviación estándar 1. R se encarga de este paso por nosotros.\nLos datos para un PCA no necesariamente tienen que cumplir los supuestos de normalidad y homogeneidad de las varianzas, así tampoco necesitan ser totalmente independientes.\nLos principales resultados del ACP son dos: gráfico de puntuaciones y el gráfico de cargas"
   },
   {
-    "objectID": "biohack-modulo7.html#qué-no-hace-el-apc",
-    "href": "biohack-modulo7.html#qué-no-hace-el-apc",
+    "objectID": "biohack-modulo7.html#qué-no-hace-el-acp",
+    "href": "biohack-modulo7.html#qué-no-hace-el-acp",
     "title": "biohack-modulo7",
-    "section": "¿Qué NO hace el APC?",
-    "text": "¿Qué NO hace el APC?\n\nEl APC no es un método estadístico dirigido a llevar pruebas de hipótesis o estadística inferencial. En más detalle:\n\nNo valores p o pruebas de hipótesis: no provee valores p, intervalos de confianza o signficancia estadística como podemos esperar del ANOVA. Sirve para explicar varianza y encontrar patrones en los datos.\nNo es un modelo predictivo: no intenta predecir una variable dependiente en función de un set de variables independientes.\nNo tiene definición entre variables dependientes y explanatorias: trata a todas las variables de input por igual.\nNo provee interpretabilidad directa sobre las variables de input: al convertir las variables originales a un nuevo eje coordenado de componentes principales, no ofrece interpretaciones cuantitativas de las variables que forman parte de las combinaciones lineales que dieron lugar a los componentes principales."
+    "section": "¿Qué NO hace el ACP?",
+    "text": "¿Qué NO hace el ACP?\n\nEl ACP no es un método estadístico dirigido a llevar pruebas de hipótesis o estadística inferencial. En más detalle:\n\nNo valores p o pruebas de hipótesis: no provee valores p, intervalos de confianza o signficancia estadística como podemos esperar del ANOVA. Sirve para explicar varianza y encontrar patrones en los datos.\nNo es un modelo predictivo: no intenta predecir una variable dependiente en función de un set de variables independientes.\nNo tiene definición entre variables dependientes y explanatorias: trata a todas las variables de input por igual.\nNo provee interpretabilidad directa sobre las variables de input: al convertir las variables originales a un nuevo eje coordenado de componentes principales, no ofrece interpretaciones cuantitativas de las variables que forman parte de las combinaciones lineales que dieron lugar a los componentes principales."
   },
   {
-    "objectID": "biohack-modulo7.html#apc-en-r",
-    "href": "biohack-modulo7.html#apc-en-r",
+    "objectID": "biohack-modulo7.html#acp-en-r",
+    "href": "biohack-modulo7.html#acp-en-r",
     "title": "biohack-modulo7",
-    "section": "APC en R",
-    "text": "APC en R\nUsaremos una tabla de datos overdose.csv que contiene información del número de muertes por sobredosis de drogas sintéticas, heroína, metadona y causas naturales en 33 estados de los Estados Unidos.\n\ngit_url &lt;- \"https://raw.githubusercontent.com/mmorenozam/biohack-modulo7/refs/heads/main/overdose.csv\"\n\noverdose &lt;- read.csv(git_url)\n\nhead(overdose)\n\n    State year Heroin Methadone Natural Synthetic abb region\n1 Arizona 2010     90       106     327        68  AZ   West\n2 Arizona 2011    117        55     313        40  AZ   West\n3 Arizona 2012    101        50     326        36  AZ   West\n4 Arizona 2013    146        64     253        52  AZ   West\n5 Arizona 2014    197        62     290        57  AZ   West\n6 Arizona 2015    247        75     298        72  AZ   West"
+    "section": "ACP en R",
+    "text": "ACP en R\nUsaremos una tabla de datos overdose.csv que contiene información del número de muertes por sobredosis de drogas sintéticas, heroína, metadona y causas naturales en 33 estados de los Estados Unidos.\n\ngit_url &lt;- \"https://raw.githubusercontent.com/mmorenozam/biohack-modulo7/refs/heads/main/overdose.csv\"\n\noverdose &lt;- read.csv(git_url)\n\nhead(overdose)\n\n    State year Heroin Methadone Natural Synthetic abb region\n1 Arizona 2010     90       106     327        68  AZ   West\n2 Arizona 2011    117        55     313        40  AZ   West\n3 Arizona 2012    101        50     326        36  AZ   West\n4 Arizona 2013    146        64     253        52  AZ   West\n5 Arizona 2014    197        62     290        57  AZ   West\n6 Arizona 2015    247        75     298        72  AZ   West"
   },
   {
-    "objectID": "biohack-modulo7.html#apc-en-r-1",
-    "href": "biohack-modulo7.html#apc-en-r-1",
+    "objectID": "biohack-modulo7.html#acp-en-r-1",
+    "href": "biohack-modulo7.html#acp-en-r-1",
     "title": "biohack-modulo7",
-    "section": "APC en R",
-    "text": "APC en R\nNos ayudaremos de la librería {ggbiplot} y la función R de base prcomp.\n\n\n\nlibrary(ggplot2)\nlibrary(ggbiplot)\n\noverdose.pc &lt;- prcomp(overdose[c(3:6)], scale.=T)\n\nggbiplot(overdose.pc, \n         groups = overdose$region,\n         labels = overdose$abb,\n         ellipse = T) + \n  coord_cartesian() +\n  theme_bw()"
+    "section": "ACP en R",
+    "text": "ACP en R\nNos ayudaremos de la librería {ggbiplot} y la función R de base prcomp.\n\n\n\nlibrary(ggplot2)\nlibrary(ggbiplot)\n\noverdose.pc &lt;- prcomp(overdose[c(3:6)], scale.=T)\n\nggbiplot(overdose.pc, \n         groups = overdose$region,\n         labels = overdose$abb,\n         ellipse = T) + \n  coord_cartesian() +\n  theme_bw()"
   },
   {
-    "objectID": "biohack-modulo7.html#apc-en-r-2",
-    "href": "biohack-modulo7.html#apc-en-r-2",
+    "objectID": "biohack-modulo7.html#acp-en-r-2",
+    "href": "biohack-modulo7.html#acp-en-r-2",
     "title": "biohack-modulo7",
-    "section": "APC en R",
-    "text": "APC en R\n\n\n\nCP1: explica 63.5% de la varianza, representando en general las razones de muerte registradas, Nueva York (NY) al límite superior, y el resto de estados al límite inferior.\nCP2: explica 28.2% de la varianza, representando un contraste entre las muertes causadas por heroína y drogas sintéticas con respecto a las muertes de causas naturales y metadona. En este componente, los estados de Ohio (OH) y la Florida (FL) se encuentran opuestos.\nLas regiones son representadas por las diferencias en las causas de muerte registradas: en el medio oeste (Midwest) y noreste (Northeast), las drogas sintéticas y heroína producen mayores incidencias que con respecto a las regiones sur (South) y oeste (west) donde muestran más incidencias las muertes por causas naturales y metadona.\nLos ángulos de las cargas, al ser evidentemente menores a 90\\(^o\\) denotan que las causas de muerte en la tabla de datos original están correlacionadas."
+    "section": "ACP en R",
+    "text": "ACP en R\n\n\n\nCP1: explica 63.5% de la varianza, representando en general las razones de muerte registradas, Nueva York (NY) al límite superior, y el resto de estados al límite inferior.\nCP2: explica 28.2% de la varianza, representando un contraste entre las muertes causadas por heroína y drogas sintéticas con respecto a las muertes de causas naturales y metadona. En este componente, los estados de Ohio (OH) y la Florida (FL) se encuentran opuestos.\nLas regiones son representadas por las diferencias en las causas de muerte registradas: en el medio oeste (Midwest) y noreste (Northeast), las drogas sintéticas y heroína producen mayores incidencias que con respecto a las regiones sur (South) y oeste (west) donde muestran más incidencias las muertes por causas naturales y metadona.\nLos ángulos de las cargas, al ser evidentemente menores a 90\\(^o\\) denotan que las causas de muerte en la tabla de datos original están correlacionadas."
   },
   {
     "objectID": "biohack-modulo7.html#section-2",

@@ -1174,7 +1174,7 @@ colformat_double(flextable(compare_performance(lm1.1, lm2.1, lm4.1, glm1, glm2, 
 ::: {.column width="60%"}
 
 ::: {.title data-id="title"}
-[Ejercicios 7.1](https://mmorenozam.github.io/biohack-website/ejercicios_m7.html#ejercicios-7.1){target="_blank"}
+[Ejercicios 7.1](https://mmorenozam.github.io/biohack_progR/ejercicios_m7.html#ejercicios-7.1){target="_blank"}
 :::
 
 :::{.timer #Timer1 seconds=900 starton=interaction}
@@ -1195,9 +1195,9 @@ colformat_double(flextable(compare_performance(lm1.1, lm2.1, lm4.1, glm1, glm2, 
 
 -   Mediante esta reducción, se pueden simplificar y visualizar datos altamente complejos. Esto ayuda a la interpretación e identificación de procesos que de otra forma, no sería fácil el determinar.
 
--   Es por esta razón que el PCA (ó APC) es popular en biología al ser este un campo donde comúnmente se generan datos que pueden contener cientos de filas y columnas.
+-   Es por esta razón que el PCA (ó ACP) es popular en biología al ser este un campo donde comúnmente se generan datos que pueden contener cientos de filas y columnas.
 
--   Las preguntas que se pueden contestar con APC incluyen:
+-   Las preguntas que se pueden contestar con ACP incluyen:
 
     -   ¿Qué muestras son más o menos similares entre sí?
     
@@ -1244,12 +1244,12 @@ colformat_double(flextable(compare_performance(lm1.1, lm2.1, lm4.1, glm1, glm2, 
 
 :::
 
-## Consideraciones antes de implementar APC {.smaller}
+## Consideraciones antes de implementar ACP {.smaller}
 
 
 ::: incremental
 
--   El input de un APC pueden ser dos o más variables continuas. El APC clásico no puede lidiar con variables categóricas.
+-   El input de un ACP pueden ser dos o más variables continuas. El ACP clásico no puede lidiar con variables categóricas.
 
 -   Debido a las posibles diferencias en los órdenes de magnitud y varianzas entre las variables continuas objeto de estudio, es aconsejable el estandarizar los valores.
 
@@ -1257,17 +1257,17 @@ colformat_double(flextable(compare_performance(lm1.1, lm2.1, lm4.1, glm1, glm2, 
 
 -   Los datos para un PCA no necesariamente tienen que cumplir los supuestos de normalidad y homogeneidad de las varianzas, así tampoco necesitan ser totalmente independientes.
 
--   Los principales resultados del APC son dos: **gráfico de puntuaciones** y el **gráfico de cargas**
+-   Los principales resultados del ACP son dos: **gráfico de puntuaciones** y el **gráfico de cargas**
 
 
 :::
 
 
-## ¿Qué NO hace el APC? {.smaller}
+## ¿Qué NO hace el ACP? {.smaller}
 
 ::: incremental
 
-El APC no es un método estadístico dirigido a llevar pruebas de hipótesis o estadística inferencial. En más detalle:
+El ACP no es un método estadístico dirigido a llevar pruebas de hipótesis o estadística inferencial. En más detalle:
 
 1.    **No valores p o pruebas de hipótesis:** no provee valores p, intervalos de confianza o signficancia estadística como podemos esperar del ANOVA. Sirve para explicar varianza y encontrar patrones en los datos.
 
@@ -1279,7 +1279,7 @@ El APC no es un método estadístico dirigido a llevar pruebas de hipótesis o e
 
 :::
 
-## APC en R
+## ACP en R
 
 Usaremos una tabla de datos `overdose.csv` que contiene información del número de muertes por sobredosis de drogas sintéticas, heroína, metadona y causas naturales en 33 estados de los Estados Unidos.
 
@@ -1291,7 +1291,7 @@ overdose <- read.csv(git_url)
 head(overdose)
 ```
 
-## APC en R {.smaller visibility="uncounted"}
+## ACP en R {.smaller visibility="uncounted"}
 
 Nos ayudaremos de la librería `{ggbiplot}` y la función R de base `prcomp`.
 
@@ -1333,7 +1333,7 @@ ggbiplot(overdose.pc,
 :::
 :::
 
-## APC en R {.smaller visibility="uncounted" .scrollable}
+## ACP en R {.smaller visibility="uncounted" .scrollable}
 
 ::: columns
 ::: {.column width="50%"}
@@ -1378,7 +1378,7 @@ ggbiplot(overdose.pc,
 ::: {.column width="60%"}
 
 ::: {.title data-id="title"}
-[Ejercicios 7.2](https://mmorenozam.github.io/biohack-website/ejercicios_m7.html#ejercicios-7.2){target="_blank"}
+[Ejercicios 7.2](https://mmorenozam.github.io/biohack_progR/ejercicios_m7.html#ejercicios-7.2){target="_blank"}
 :::
 
 :::{.timer #Timer2 seconds=600 starton=interaction}
