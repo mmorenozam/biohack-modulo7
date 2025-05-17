@@ -207,7 +207,7 @@
     "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-1",
     "title": "biohack-modulo7",
     "section": "Diagnósticos de la regresión múltiple",
-    "text": "Diagnósticos de la regresión múltiple\n\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
+    "text": "Diagnósticos de la regresión múltiple"
   },
   {
     "objectID": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-2",
@@ -221,7 +221,7 @@
     "href": "biohack-modulo7.html#diagnósticos-de-la-regresión-múltiple-3",
     "title": "biohack-modulo7",
     "section": "Diagnósticos de la regresión múltiple",
-    "text": "Diagnósticos de la regresión múltiple\n\n\n\n\nError: Package `see` required to plot collinearity-check.\n  Please install it by running `install.packages(\"see\")`.\n\n\n\nChequeo de la colinearidad\nAquí vemos distribuidas en el eje X cada una de las variables que estamos usando como predictores mientras que en el eje Y tenemos el factor de inflación de la varianza (VIF) que cada una de estas contribuye al modelo. Nos da una idea de que variables podríamos eliminar basados en mantener únicamente variables independientes entre sí como predictores."
+    "text": "Diagnósticos de la regresión múltiple\n\n\n\n\n\n\n\n\n\n\n\n\nChequeo de la colinearidad\nAquí vemos distribuidas en el eje X cada una de las variables que estamos usando como predictores mientras que en el eje Y tenemos el factor de inflación de la varianza (VIF) que cada una de estas contribuye al modelo. Nos da una idea de que variables podríamos eliminar basados en mantener únicamente variables independientes entre sí como predictores."
   },
   {
     "objectID": "biohack-modulo7.html#transformaciones",
@@ -235,7 +235,7 @@
     "href": "biohack-modulo7.html#transformaciones-1",
     "title": "biohack-modulo7",
     "section": "Transformaciones",
-    "text": "Transformaciones\n\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
+    "text": "Transformaciones"
   },
   {
     "objectID": "biohack-modulo7.html#removiendo-outliers",
@@ -249,7 +249,7 @@
     "href": "biohack-modulo7.html#removiendo-outliers-1",
     "title": "biohack-modulo7",
     "section": "Removiendo outliers",
-    "text": "Removiendo outliers\n\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
+    "text": "Removiendo outliers"
   },
   {
     "objectID": "biohack-modulo7.html#modelo-final",
@@ -312,14 +312,14 @@
     "href": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo-1",
     "title": "biohack-modulo7",
     "section": "El mágico \\(R^2\\) en nuestro ejemplo",
-    "text": "El mágico \\(R^2\\) en nuestro ejemplo\n\n\n\nrot_berlin$cases_comp &lt;- rot_berlin$cases + 1\nrot_berlin_out$cases_comp &lt;- rot_berlin_out$cases + 1\nlm1.1 &lt;- lm(cases ~ FM + RSK + SHK_TAG + PM + TMK + TXK + TNK + UPM, data = rot_berlin_out)\nlm2.1 &lt;- lm(cases ~ TXK + UPM, data = rot_berlin_out)\nlm3.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\nlm4.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\n\ncompare_performance(lm1.1, lm2.1, lm3.1, lm4.1, rank = T)\n\n# Comparison of Model Performance Indices\n\nName  | Model |    R2 | R2 (adj.) |   RMSE |  Sigma | AIC weights\n-----------------------------------------------------------------\nlm3.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500\nlm4.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500\nlm1.1 |    lm | 0.847 |     0.825 | 12.989 | 14.011 |    7.53e-11\nlm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14\n\nName  | AICc weights | BIC weights | Performance-Score\n------------------------------------------------------\nlm3.1 |        0.500 |       0.500 |            94.93%\nlm4.1 |        0.500 |       0.500 |            94.93%\nlm1.1 |     1.33e-11 |    1.16e-13 |            33.96%\nlm2.1 |     1.26e-14 |    1.26e-14 |             0.00%\n\n\n\n\nplot(compare_performance(lm1.1, lm2.1, lm3.1, lm4.1))\n\nError: Package `see` required for model comparison plots.\n  Please install it by running `install.packages(\"see\")`."
+    "text": "El mágico \\(R^2\\) en nuestro ejemplo\n\n\n\nrot_berlin$cases_comp &lt;- rot_berlin$cases + 1\nrot_berlin_out$cases_comp &lt;- rot_berlin_out$cases + 1\nlm1.1 &lt;- lm(cases ~ FM + RSK + SHK_TAG + PM + TMK + TXK + TNK + UPM, data = rot_berlin_out)\nlm2.1 &lt;- lm(cases ~ TXK + UPM, data = rot_berlin_out)\nlm3.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\nlm4.1 &lt;- lm(log(cases_comp) ~ TXK + UPM, data = rot_berlin_out)\n\ncompare_performance(lm1.1, lm2.1, lm3.1, lm4.1, rank = T)\n\n# Comparison of Model Performance Indices\n\nName  | Model |    R2 | R2 (adj.) |   RMSE |  Sigma | AIC weights\n-----------------------------------------------------------------\nlm3.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500\nlm4.1 |    lm | 0.824 |     0.818 |  0.411 |  0.421 |       0.500\nlm1.1 |    lm | 0.847 |     0.825 | 12.989 | 14.011 |    7.53e-11\nlm2.1 |    lm | 0.759 |     0.751 | 16.341 | 16.738 |    1.26e-14\n\nName  | AICc weights | BIC weights | Performance-Score\n------------------------------------------------------\nlm3.1 |        0.500 |       0.500 |            94.93%\nlm4.1 |        0.500 |       0.500 |            94.93%\nlm1.1 |     1.33e-11 |    1.16e-13 |            33.96%\nlm2.1 |     1.26e-14 |    1.26e-14 |             0.00%\n\n\n\n\nplot(compare_performance(lm1.1, lm2.1, lm3.1, lm4.1))"
   },
   {
     "objectID": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo-2",
     "href": "biohack-modulo7.html#el-mágico-r2-en-nuestro-ejemplo-2",
     "title": "biohack-modulo7",
     "section": "El mágico \\(R^2\\) en nuestro ejemplo",
-    "text": "El mágico \\(R^2\\) en nuestro ejemplo\n\n\n\nEl mejor modelo de acuerdo al mágico \\(R^2\\)\n\n\ncheck_model(lm1.1)\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`.\n\n\n\n\nNuestro pobre pero honrado mejor modelo\n\n\ncheck_model(lm4.1)\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
+    "text": "El mágico \\(R^2\\) en nuestro ejemplo\n\n\n\nEl mejor modelo de acuerdo al mágico \\(R^2\\)\n\n\ncheck_model(lm1.1)\n\n\n\n\n\n\n\n\n\n\nNuestro pobre pero honrado mejor modelo\n\n\ncheck_model(lm4.1)"
   },
   {
     "objectID": "biohack-modulo7.html#qué-son-los-modelos-lineales-generalizados",
@@ -340,7 +340,7 @@
     "href": "biohack-modulo7.html#regresión-de-poisson-en-r-1",
     "title": "biohack-modulo7",
     "section": "Regresión de Poisson en R",
-    "text": "Regresión de Poisson en R\n\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
+    "text": "Regresión de Poisson en R"
   },
   {
     "objectID": "biohack-modulo7.html#regresión-binomial-negativa",
@@ -354,7 +354,7 @@
     "href": "biohack-modulo7.html#regresión-binomial-negativa-1",
     "title": "biohack-modulo7",
     "section": "Regresión binomial negativa",
-    "text": "Regresión binomial negativa\n\n\nError: Package `see` required for model diagnostic plots.\n  Please install it by running `install.packages(\"see\")`."
+    "text": "Regresión binomial negativa"
   },
   {
     "objectID": "biohack-modulo7.html#comparación-de-modelos",
